@@ -13,5 +13,6 @@
         <h2>En cours de développement</h2>
         <h1>user b modification</h1>
     </div>
+    <h2></h2>
 </body>
 </html>
