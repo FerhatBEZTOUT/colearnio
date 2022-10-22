@@ -10,9 +10,11 @@
 </head>
 <body>
     <div class="container d-flex justify-content-center align-items-center">
-        <h2>En cours de développement</h2>
-        <h1>user b modification modifb</h1>
+        <form action="index.php" method="get">
+            <input class="form-control" type="text" placeholder="Recherche" name="rech" id="rech">
+            
+        </form>
     </div>
-    <h2>fefre</h2>
+   
 </body>
 </html>
