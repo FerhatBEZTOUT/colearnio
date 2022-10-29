@@ -19,6 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <title>Colearnio, apprendre ensemble</title>
 </head>
@@ -29,16 +30,16 @@
         <img src="img/logo.png" class="logo">        
             <nav>
                 <ul>
-                <li><a href="#">Se connecter</a></li>
-                <li><a href="#">Inscription</a></li>
+                <li><a href="connexion.php">Se connecter</a></li>
+                <li><a href="inscription.php">Inscription</a></li>
             </ul>
         </nav>
     </div>
     <div class="text">
         <h1> COLEARNIO, APPRENDRE ENSEMBLE.</h1>
         <div class="btn">
-            <a href="#"><span></span> Connexion</a>
-            <a href="#"><span></span> Inscription</a>
+            <a href="connexion.php"><span></span> Connexion</a>
+            <a href="inscription.php"><span></span> Inscription</a>
         </div>
     </div>
   </section> 
