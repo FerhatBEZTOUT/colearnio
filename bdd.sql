@@ -61,7 +61,6 @@ CREATE TABLE user(
 
     CONSTRAINT pk_user PRIMARY KEY(idUser),
     CONSTRAINT fk_user_formation FOREIGN KEY(idFormation) REFERENCES Formation(idFormation) ON UPDATE CASCADE,
-    CONSTRAINT fk_user_niveau FOREIGN KEY(idNiveau) REFERENCES Niveau(idNiveau) ON UPDATE CASCADE
 
 );
 

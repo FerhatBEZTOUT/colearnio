@@ -13,7 +13,7 @@
     
   <section id="accueil">
     <div class="navbar">
-        <img src="photo/logo.png" class="logo">        
+        <img src="img/logo.png" class="logo">        
             <nav>
                 <ul>
                 <li><a href="#">Se connecter</a></li>
@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="img1">
-            <img src="photo/photo1.webp">
+            <img src="img/photo1.webp">
         </div>
         <div class="im2">
             <h1>  trouve les personnes les plus proches</h1>
@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="img2">
-            <img src="photo/photo2.webp">
+            <img src="img/photo2.webp">
         </div>
     </div>
   </section>
@@ -68,7 +68,7 @@
     <div class="name">
         <div class="-col">
             <div class="utilisateur">
-                <img src="photo/user.jpg" >
+                <img src="img/user.jpg" >
                 <div class="info">
                     <h4>Anna Emy <i class="fa fa-instagram"></i></h4>
                     
@@ -78,7 +78,7 @@
         </div>
         <div class="-col">
             <div class="utilisateur">
-                <img src="photo/utilisateur.png" >
+                <img src="img/utilisateur.png" >
                 <div class="info">
                     <h4>David dermani <i class="fa fa-twitter"></i></h4>
                     
