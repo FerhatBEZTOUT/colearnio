@@ -39,18 +39,18 @@
 
     <div class="image">
         <div class="im1">
-            <h1> Communiquer</h1>
+            <h1>Restez en contact</h1>
             <div class="im1-desc">
-                <p> permet de regrouper des personnes afin de partager l'information  </p>
+                <p>Trouvez des personnes avec qui vous vous partegerez vos connaissances et restez en contact</p>
             </div>
         </div>
         <div class="img1">
             <img src="img/photo1.webp">
         </div>
         <div class="im2">
-            <h1>  trouve les personnes les plus proches</h1>
+            <h1>Devant chez vous</h1>
             <div class="im2-desc">
-                <p> trouve les personnes les plus proches et qui ont les mêmes intérêts que vous afin que vous puissiez réviser ensembles. </p>
+                <p>Trouvez les personnes les plus proches de vous et qui ont les mêmes intérêts que vous afin que vous puissiez réviser ensembles.</p>
             </div>
         </div>
         <div class="img2">
@@ -74,7 +74,7 @@
                     
                 </div>
             </div>
-            <p>le site est super bien il ma beaucoup aider</p>
+            <p>le site est super bien il m'a beaucoup aidé, j'ai validé ma L1 grâce à l'aide des autres membres</p>
         </div>
         <div class="-col">
             <div class="utilisateur">
@@ -84,7 +84,7 @@
                     
                 </div>
             </div>
-            <p>Bon site mais j'aimerai bien plus de prosition </p>
+            <p>J'adore ce site, à quand la version mobile et surtout sur iOS ???</p>
         </div>
     </div>
 
