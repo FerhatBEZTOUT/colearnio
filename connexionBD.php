@@ -7,4 +7,5 @@
         echo 'Impossible de se connecter à la BDD : '.$e;
     }
 
+    
 ?>
