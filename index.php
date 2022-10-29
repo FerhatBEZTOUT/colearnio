@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +18,7 @@
             <input class="form-control" type="text" placeholder="Recherche" name="rech" id="rech">
             
         </form>
-    </div>kjhjk
+    </div>
    
 </body>
 </html>

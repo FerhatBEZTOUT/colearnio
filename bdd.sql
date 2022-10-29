@@ -12,7 +12,7 @@ CREATE TABLE rdv (
     rueRdv VARCHAR(50) NOT NULL,
     villeRdv VARCHAR(50) NOT NULL,
     codePostRdv VARCHAR(50) NOT NULL,
-
+	
     CONSTRAINT pk_rdv PRIMARY KEY (idRdv),
     CONSTRAINT ck_dateRdv CHECK (dateRdv>=CURRENT_DATE)
 
