@@ -40,6 +40,4 @@ function envoyerMail($email,$nom,$prenom,$key) {
         $error = false;
     }
 }
-    $tmpHash = md5('ferhatbeztout'.date('h:i:sa'));
- envoyerMail('ferhatbeztout@gmail.com','beztout','deter',$tmpHash);
 ?>
