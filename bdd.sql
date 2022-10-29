@@ -44,7 +44,7 @@ CREATE TABLE formation(
 
 
 -- ---------------- user ---------------
-CREATE TABLE user(
+CREATE TABLE utilisateur(
     idUser INT AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL,
     prenom VARCHAR(50) NOT NULL,
@@ -54,10 +54,14 @@ CREATE TABLE user(
     ville VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     mdp VARCHAR(128) NOT NULL, -- On choisira CHAR(N) quand on aura décidé quel hash utiliser
-    validemail BOOLEAN NOT NULL,
-    cle BOOLEAN UNIQUE NOT NULL,
+    isValidMail BOOLEAN NOT NULL,
+    cle VARCHAR(128) UNIQUE NOT NULL,
     idFormation INT,
-    idNiveau INT,
+    niveau INT,
+    dateTimeInscri DATETIME,
+    isAdmin BOOLEAN,
+
+
 
     CONSTRAINT pk_user PRIMARY KEY(idUser),
     CONSTRAINT fk_user_formation FOREIGN KEY(idFormation) REFERENCES Formation(idFormation) ON UPDATE CASCADE,

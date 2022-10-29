@@ -1,13 +1,26 @@
+<?php
+
+    if(isset($_SESSION['connecté'])) {
+        $userType = $_SESSION['userType'];
+
+        if ($userType=='admin') {
+            header('location:dashboard');
+        } else {
+            header('location:mafiche');
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <title>Accueil</title>
+    <title>Colearnio, apprendre ensemble</title>
 </head>
 <body>
     
@@ -98,7 +111,7 @@
   <!--footer-->
   <section id="footer">
     <div class="mil">
-        <p>Contacte</p>
+        <p>Contact</p>
     </div>
     <div class="row">
     <div class="left">
@@ -106,7 +119,7 @@
         <P>Apprendre ensemble.</P>
     </div>
         <div class="right">
-            <h1>Contacte</h1>
+            <h1>Contact</h1>
             <P> 2 Av. Adolphe Chauvin,
                 95300 Pontoise <i class="fa fa-paper-plane"></i></P>
                 
