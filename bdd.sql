@@ -49,6 +49,7 @@ CREATE TABLE utilisateur(
     nom VARCHAR(50) NOT NULL,
     prenom VARCHAR(50) NOT NULL,
     dateNaiss date NOT NULL,
+    pseudo VARCHAR(60) NOT NULL,
     rue VARCHAR(50),
     codePost CHAR(5),
     ville VARCHAR(50) NOT NULL,

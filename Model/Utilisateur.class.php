@@ -5,6 +5,7 @@
        private $nom;
        private $prenom;
        private $dateNaiss;
+       private $pseudo;
        private $rue;
        private $codePost;
        private $ville;
@@ -23,6 +24,7 @@
         $this->nom=NULL;
         $this->prenom=NULL;
         $this->dateNaiss=NULL;
+        $this->pseudo=NULL;
         $this->rue=NULL;
         $this->codePost=NULL;
         $this->ville=NULL;
@@ -68,6 +70,14 @@
        {
               return $this->dateNaiss;
        }
+
+       /**
+        * Get the value of pseudo
+        */ 
+        public function getPseudo()
+        {
+               return $this->pseudo;
+        }
 
        /**
         * Get the value of rue
@@ -163,13 +173,14 @@
         $conn = newConnect();
         try {
 
-            $query = $conn->prepare("select * from utilisateur where id=?");
+            $query = $conn->prepare("SELECT * FROM utilisateur WHERE id=?");
             $query->execute(array($id));
-            $r = $query->fetch(PDO::FETCH_OBJ);
+            $r = $query->fetch(PDO::FETCH_OBJ); // $r = resultat
             $this->idUser=$r->idUser;
             $this->nom=$r->nom;
             $this->prenom=$r->prenom;
             $this->dateNaiss=$r->dateNaiss;
+            $this->pseudo=$r->pseudo;
             $this->rue=$r->rue;
             $this->codePost=$r->codePost;
             $this->ville=$r->ville;
@@ -194,14 +205,15 @@
         
         try {
             $conn = newConnect();
-            $query = $conn->prepare("select * from utilisateur where cle=?");
+            $query = $conn->prepare("SELECT * FROM utilisateur WHERE cle=?");
             $query->execute(array($cle));
         
-            $r = $query->fetch(PDO::FETCH_OBJ);
+            $r = $query->fetch(PDO::FETCH_OBJ); 
             $this->idUser=$r->idUser;
             $this->nom=$r->nom;
             $this->prenom=$r->prenom;
             $this->dateNaiss=$r->dateNaiss;
+            $this->pseudo=$r->pseudo;
             $this->rue=$r->rue;
             $this->codePost=$r->codePost;
             $this->ville=$r->ville;
@@ -218,6 +230,7 @@
             echo $e->getMessage();
         }
        }
+
        public function validateUser($cle) {
         include_once 'connexionBD.php';
         $conn = newConnect();
@@ -230,6 +243,37 @@
             echo $e->getMessage();
         }
         
+       }
+
+       public function getUserByEmail($email) {
+        include_once 'connexionBD.php';
+        
+        try {
+            $conn = newConnect();
+            $query = $conn->prepare("SELECT * FROM utilisateur WHERE email=?");
+            $query->execute(array($email));
+        
+            $r = $query->fetch(PDO::FETCH_OBJ); 
+            $this->idUser=$r->idUser;
+            $this->nom=$r->nom;
+            $this->prenom=$r->prenom;
+            $this->dateNaiss=$r->dateNaiss;
+            $this->pseudo=$r->pseudo;
+            $this->rue=$r->rue;
+            $this->codePost=$r->codePost;
+            $this->ville=$r->ville;
+            $this->email=$r->email;
+            $this->mdp=$r->mdp;
+            $this->isValidMail=$r->isValidMail;
+            $this->cle=$r->cle;
+            $this->idFormation=$r->idFormation;
+            $this->niveau=$r->niveau;
+            $this->dateTimeInscri=$r->dateTimeInscri;
+            $this->isAdmin=$r->isAdmin;
+            
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
        }
 
        
