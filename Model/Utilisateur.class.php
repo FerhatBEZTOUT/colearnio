@@ -1,5 +1,6 @@
 <?php 
 // Classe utilisateur pour pouvoir récupérer/modifier les données de l'utilisateur
+
     class Utilisateur {
        private $idUser;
        private $nom;
@@ -176,6 +177,7 @@
             $query = $conn->prepare("SELECT * FROM utilisateur WHERE id=?");
             $query->execute(array($id));
             $r = $query->fetch(PDO::FETCH_OBJ); // $r = resultat
+
             $this->idUser=$r->idUser;
             $this->nom=$r->nom;
             $this->prenom=$r->prenom;
@@ -192,10 +194,11 @@
             $this->niveau=$r->niveau;
             $this->dateTimeInscri=$r->dateTimeInscri;;
             $this->isAdmin=$r->isAdmin;
-            
+
         } catch (PDOException $e) {
             echo $e->getMessage();
-        }
+        } 
+        
         
         
        }

@@ -7,13 +7,17 @@
             
         } catch (PDOException $e) {
             echo 'Impossible de se connecter à la BDD : '.$e->getMessage();
-            die();
+            die();  
         }
 
         return $conn;
     }
 
 
+
+    function closeConnection(PDO $conn){
+        $conn = NULL;
+    }
 
     
 
