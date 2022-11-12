@@ -1,6 +1,10 @@
 <?php 
-// Classe utilisateur pour pouvoir récupérer/modifier les données de l'utilisateur
-
+    
+    /**
+     * Utilisateur
+     * 
+     * Classe pour pouvoir récupérer/modifier les données de l'utilisateur
+     */
     class Utilisateur {
        private $idUser;
        private $nom;
@@ -14,7 +18,6 @@
        private $mdp;
        private $isValidMail;
        private $cle;
-       private $idFormation;
        private $niveau;
        private $dateTimeInscri;
        private $isAdmin;
@@ -33,7 +36,6 @@
         $this->mdp=NULL;
         $this->isValidMail=NULL;
         $this->cle=NULL;
-        $this->idFormation=NULL;
         $this->niveau=NULL;
         $this->dateTimeInscri=NULL;
         $this->isAdmin=false;
@@ -136,13 +138,7 @@
               return $this->cle;
        }
 
-       /**
-        * Get the value of idFormation
-        */ 
-       public function getIdFormation()
-       {
-              return $this->idFormation;
-       }
+       
 
        /**
         * Get the value of niveau
