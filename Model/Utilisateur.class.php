@@ -1,5 +1,10 @@
 <?php 
-// Classe utilisateur pour pouvoir récupérer/modifier les données de l'utilisateur
+    
+    /**
+     * Utilisateur
+     * 
+     * Classe pour pouvoir récupérer/modifier les données de l'utilisateur
+     */
     class Utilisateur {
        private $idUser;
        private $nom;
@@ -13,7 +18,6 @@
        private $mdp;
        private $isValidMail;
        private $cle;
-       private $idFormation;
        private $niveau;
        private $dateTimeInscri;
        private $isAdmin;
@@ -32,7 +36,6 @@
         $this->mdp=NULL;
         $this->isValidMail=NULL;
         $this->cle=NULL;
-        $this->idFormation=NULL;
         $this->niveau=NULL;
         $this->dateTimeInscri=NULL;
         $this->isAdmin=false;
@@ -135,13 +138,7 @@
               return $this->cle;
        }
 
-       /**
-        * Get the value of idFormation
-        */ 
-       public function getIdFormation()
-       {
-              return $this->idFormation;
-       }
+       
 
        /**
         * Get the value of niveau
@@ -176,6 +173,7 @@
             $query = $conn->prepare("SELECT * FROM utilisateur WHERE id=?");
             $query->execute(array($id));
             $r = $query->fetch(PDO::FETCH_OBJ); // $r = resultat
+
             $this->idUser=$r->idUser;
             $this->nom=$r->nom;
             $this->prenom=$r->prenom;
@@ -192,10 +190,11 @@
             $this->niveau=$r->niveau;
             $this->dateTimeInscri=$r->dateTimeInscri;;
             $this->isAdmin=$r->isAdmin;
-            
+
         } catch (PDOException $e) {
             echo $e->getMessage();
-        }
+        } 
+        
         
         
        }

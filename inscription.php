@@ -1,8 +1,15 @@
 <?php
-session_start();
+if(!session_id()){
+  session_start();
+}
+
+if(isset($_SESSION['connecté'])) {
+  header('location:index.php');
+}
+
 include_once 'Model/connexionBD.php';
 
-$bdd = newConnect();
+
 
 if (isset($_POST['envoi'])) {
   if (!empty($_POST['jour']) && !empty($_POST['mois']) && !empty($_POST['annee'])) {
