@@ -40,4 +40,6 @@ function envoyerMail($email,$nom,$prenom,$key) {
         $error = false;
     }
 }
+envoyerMail('ferhatbeztout@gmail.com','beztout','ferhat','12345679');
+
 ?>

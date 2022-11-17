@@ -24,3 +24,22 @@ body {
 .invisible {
     display:none;
 }
+
+.case{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.donnee{
+    width: 200px;
+}
+
+.info{
+    background-color: rgb(46, 45, 45);
+    padding:1px;
+    margin-bottom: 4px;
+    width: 300px;
+    border-radius: 10px;
+    opacity:0.5;
+    color: black;
+}
