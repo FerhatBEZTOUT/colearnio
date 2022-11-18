@@ -37,6 +37,7 @@ CREATE TABLE utilisateur(
     prenom VARCHAR(50) NOT NULL,
     dateNaiss date,
     pseudo VARCHAR(60) NOT NULL,
+    sexe CHAR(1),
     rue VARCHAR(50),
     codePost CHAR(5),
     ville VARCHAR(50),
@@ -46,7 +47,7 @@ CREATE TABLE utilisateur(
     cle CHAR(60) UNIQUE NOT NULL,
     niveau INT,
     dateTimeInscri DATETIME NOT NULL,
-    isAdmin BOOLEAN DEFAULT FALSE,
+    isAdmin BOOLEAN DEFAULT FALSE NOT NULL,
     noteSite int,
     cmtrSite TEXT,
 
