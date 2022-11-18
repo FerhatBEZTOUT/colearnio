@@ -1,4 +1,11 @@
 <?php
+    if(!session_id()){
+        session_start();
+    }
+    include_once 'Model/connexionBD.php';
+    include 'user.php';
+
+    $user = getUserById(1);
 ?>
 
 <!DOCTYPE html>
@@ -19,11 +26,10 @@
                     <div class="card mb-4">
                         <div class="card-body text-center">
                             <img src="img/user.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 200px;">
-                            <h5 class="my-3">Nom Prenom</h5>
+                            <h5 class="my-3"><?php user->pseudo ?></h5>
                             <p class="text-muted mb-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis odit facilis maxime earum dolorum aspernatur. Ducimus est officiis accusantium accusamus, amet tenetur sunt quia iusto soluta, mollitia dignissimos deserunt quisquam?</p>
                             </br>
                             <div class="d-flex justify-content-center mb-2">
-                                <button type="button" class="btn btn-primary">S'abonner</button>
                                 <button type="button" class="btn btn-outline-primary ms-1">Contacter</button>
                             </div>
                         </div>

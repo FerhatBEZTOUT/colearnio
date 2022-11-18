@@ -9,7 +9,7 @@ if ( isset($_GET['key'])) {
 
     // Récupération des infos via la clé de validation
     $u->getUserByKey($key);
-
+    
     
     if ($u->getIsValidMail()) {
         echo '<h1>Votre compte est déjà valide</h1>';
