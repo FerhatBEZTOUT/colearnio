@@ -29,15 +29,15 @@ if (isset($_POST['envoi'])){
   <title>Colearnio, apprendre ensemble</title>
 </head>
 
-<body>
+<body class="vh-100">
 
-  <div class="container d-flex justify-content-center align-items-center vh-100 ">
+  <div class="container d-flex justify-content-center align-items-center  vh-100">
   
     <form method="POST" action="" class="form-inscr p-3" id="formInscr">
     
-      <h2 class="text-center" style="color:white;">Inscription</h2>
+      <h2 class="text-center" style="color:#0d6efd;">Inscription</h2>
       <div class="text-center">
-          <p class="error" id="error"></p>
+          <p class="error invisible" id="error"></p>
       </div>
       <div class="form-row">
 
@@ -108,7 +108,9 @@ if (isset($_POST['envoi'])){
     </form>
     
   </div>
-
+  <?php
+    include_once 'View/footer.php';
+  ?>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="script/func.js"></script>
   <script src="script/inscr.js"></script>

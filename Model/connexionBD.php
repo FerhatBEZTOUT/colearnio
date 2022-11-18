@@ -1,6 +1,6 @@
 <?php
-   
-    include_once "C:\wamp\www\colearnio\config.ini.php";
+    
+    include_once __DIR__."/../config.ini.php";
     function newConnect() {
     $conn = NULL;
     GLOBAL $host,$dbname,$user,$password;
@@ -18,6 +18,8 @@
         return $conn;
     }
     
+   
+
     function closeConn(){
         return NULL;
     }

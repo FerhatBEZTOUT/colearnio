@@ -2,13 +2,12 @@
     border-radius: 5px !important;
     box-shadow: -5px 5px 10px grey !important;
     opacity: 0.9;
-    background-color: black;
-    color: white;
+    background-color: rgb(255, 255, 255);
+    color: rgb(7, 3, 3);
 }
 
 body {
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: rgb(235, 233, 233);
 }
 
 .error {
@@ -34,7 +33,7 @@ body {
 }
 
 .info{
-    background-color: rgb(46, 45, 45);
+    background-color: rgb(9, 60, 155);
     padding:1px;
     margin-bottom: 4px;
     width: 300px;

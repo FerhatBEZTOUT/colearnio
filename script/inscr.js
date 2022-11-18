@@ -6,7 +6,7 @@ $(document).ready(function () {
         var pseudo = $('#inputPseudo').val();
         if (pseudo != "") {
             $.post('pseudo.php', { pseudo: pseudo }, function (data) {
-                console.log(data);
+                    
                 if (data == 'dispo') {
                     console.log("dispo");
                     $('#feedbackdispo').removeClass("invisible");

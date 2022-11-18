@@ -1,11 +1,17 @@
 <?php
-include_once '../Model/connexionBD.php';
-include_once '../Model/Utilisateur.class.php';
+include_once __DIR__.'/../Model/connexionBD.php';
+include_once __DIR__.'/../Model/Utilisateur.class.php';
 
+/**
+ * CheckCaptcha
+ * Fonction qui vérifie le captcha fourni par Google
+ * @param  mixed $userResponse 
+ * @return void
+ */
 function CheckCaptcha($userResponse) {
     $fields_string = '';
     $fields = array(
-        'secret' => '6LdlCgkjAAAAAO31QpmlgcUnBXRdyn_sPXmKCbpf',
+        'secret' => '6LdlCgkjAAAAAO31QpmlgcUnBXRdyn_sPXmKCbpf', // Clé privée du captcha
         'response' => $userResponse
     );
     foreach($fields as $key=>$value)
