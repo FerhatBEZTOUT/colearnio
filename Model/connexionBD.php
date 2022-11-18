@@ -1,7 +1,6 @@
 <?php
    
-   include_once "../config.ini.php";
-
+    include_once "C:\wamp\www\colearnio\config.ini.php";
     function newConnect() {
     $conn = NULL;
     GLOBAL $host,$dbname,$user,$password;
