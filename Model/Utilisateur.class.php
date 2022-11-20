@@ -275,9 +275,17 @@
         }
        }
 
-       
+       public static function inscrire(string $nom,string $prenom,string $pseudo, string $email, string $mdp, string $cle) {
+              $key = password_hash(date("Y-m-d H:i:s"),PASSWORD_DEFAULT);
+              $conn = newConnect();
+              $q = $conn->prepare('INSERT INTO utilisateur(nom,prenom,pseudo,email,mdp,isValidMail,cle,dateTimeInscri)
+              VALUES (?,?,?,??,?,?,?)');
+              $r = $q->execute(array($nom,$prenom,$pseudo,$email,$mdp,0,$cle,date("Y-m-d H:i:s")));
+
+              return $r;
+       }
     }
 
-        
+    
 
 ?>
