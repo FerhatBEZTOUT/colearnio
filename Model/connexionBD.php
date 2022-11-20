@@ -9,7 +9,6 @@
            
             // creation d'un objet PDO pour pouvoir faire des requete vers la BD
             $conn = new PDO('mysql:host='. $host.';dbname='.$dbname.'',$user,$password);
-            echo 'connexion réussie';
         } catch (PDOException $e) {
             echo 'Impossible de se connecter à la BDD : '.$e->getMessage();
            

@@ -202,7 +202,7 @@ if (isset($_POST['envoi'])) {
 
   </div>
 
-  <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.4.4.min.js"></script>
   <script src="script/func.js"></script>
 </body>
 
