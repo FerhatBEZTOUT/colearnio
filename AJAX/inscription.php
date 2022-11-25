@@ -1,7 +1,8 @@
 <?php
 include_once __DIR__.'/../Model/connexionBD.php';
-include_once __DIR__.'/../Model/Utilisateur.class.php';
-
+include_once __DIR__.'/../query/user.php';
+include_once __DIR__.'/../Controller/sendMail.php';
+include_once __DIR__.'/../Controller/VerifyEmail.class.php';
 /**
  * CheckCaptcha
  * Fonction qui vérifie le captcha fourni par Google
@@ -31,12 +32,16 @@ function CheckCaptcha($userResponse) {
 }
 
 
-// if (isset($_POST['g-recaptcha-response'])){
-// $result = CheckCaptcha($_POST['g-recaptcha-response']);
-// if ($result['success']) {
+if (isset($_POST['g-recaptcha-response'])){
+$result = CheckCaptcha($_POST['g-recaptcha-response']);
+if ($result['success']) {
     
     if(isset($_POST['nom'])){
-        
+        // Tableau pour stocker les erreurs 
+        // 0 = pas d'erreur
+        // 1 = champ incorrect
+        // 2 = champ vide
+        // 3 = reservé pour mail inexistant ou invalide
         $err['nom'] = 0;
         $err['prenom']=0;
         $err['pseudo']=0;
@@ -59,13 +64,13 @@ function CheckCaptcha($userResponse) {
 
                 if(!ctype_alpha($nom)) $err['nom']=1;
                 if(!ctype_alpha($prenom)) $err['prenom']=1;
-                if(preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$/',$pseudo)) $err['pseudo']=1;
+                if(!preg_match('/^[A-Za-z0-9_-]{3,20}$/s',$pseudo)) $err['pseudo']=1;
                 if(!filter_var($email,FILTER_VALIDATE_EMAIL))  $err['email']=1;
-                if ((preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/', $mdps))) {
+                if ((preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/', $mdp))) {
                     if($mdp!=$confmdp) { $err['mdp']=1; $err['confmdp']=1;
                     }
                  } else {
-                    $err['mdp']=1;
+                    $err['mdp']=0;
                 }
 
                 $error = false;
@@ -79,8 +84,17 @@ function CheckCaptcha($userResponse) {
                 if($error) {
                     echo json_encode($err);
                 } else {
-                    $hashmdp = password_hash($mdp, PASSWORD_DEFAULT);
+                    if(verifierEmail($email)=='valid not exist' || verifierEmail($email)=='not valid not exist') {
+                        $err['email']=3;
+                        echo json_encode($err);
+                    } else {
+                        $hashmdp = password_hash($mdp, PASSWORD_DEFAULT);
+                        $key = password_hash($nom.date("Y-m-d H:i:s"),PASSWORD_DEFAULT);
+                        inscrire($nom,$prenom,$pseudo,$email,$mdp,$key);
+                        envoyerMail($email,$nom,$prenom,$key);
+                    }
                     
+
                 }
                 
         } 
@@ -98,13 +112,11 @@ function CheckCaptcha($userResponse) {
             }
         }
         
-// }
-// else {
-//     echo 'invalid_captcha';
-// }
-// } else {
-//     echo 'remplir_captcha';
-// }
+}
+else {
+    echo 'invalid_captcha';
+}
+} else {
+    echo 'remplir_captcha';
+}
 
-
-// Check si tous les champs sont saisis

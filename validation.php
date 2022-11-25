@@ -3,12 +3,12 @@
 
 if ( isset($_GET['key'])) {
     $key = $_GET['key'];
-    include_once 'Model/Utilisateur.class.php';
+    include_once __DIR__.'/query/user';
     // Création d'un objet utilisateur
-    $u = new Utilisateur();
+    
 
     // Récupération des infos via la clé de validation
-    $u->getUserByKey($key);
+    $u = getUserByKey($key);
     
     
     if ($u->getIsValidMail()) {

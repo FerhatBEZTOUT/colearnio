@@ -20,7 +20,7 @@ class VerifyEmail {
      * Email address for request 
      * @var string 
      */ 
-    protected $from = 'root@localhost'; 
+    protected $from = 'ferhatbeztout@gmail.com'; 
 
     /** 
      * The connection timeout, in seconds. 
@@ -409,11 +409,11 @@ function verifierEmail ($email) {
 
     // Check if email is valid and exist
     if($mail->check($email)){ 
-        echo 'exist'; 
+        return 'exist'; 
     }elseif(verifyEmail::validate($email)){ 
-        echo 'valid not exist'; 
+        return 'valid not exist'; 
     }else{ 
-        echo 'not valid not exist'; 
+        return 'not valid not exist'; 
     } 
 }
 
