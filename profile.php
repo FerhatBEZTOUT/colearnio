@@ -2,10 +2,22 @@
     if(!session_id()){
         session_start();
     }
-    include_once 'Model/connexionBD.php';
-    include 'user.php';
+    // __DIR__ c'est pour le site Alwaysdata , 
+    /// ne pas mettre __DIR__ cause des erreurs, il arrive pas à trouver le chemin relatif
+    include_once __DIR__.'/Model/connexionBD.php';  
+    include __DIR__.'/query/user.php';
 
-    $user = getUserById(1);
+    $conn = newConnect();
+    // $query = $conn->prepare("SELECT * FROM utilisateur WHERE idUser=2");
+    // $query->execute();
+    // $query = $query->fetchAll();
+    // var_dump($query); 
+    $user = getUserById(2);  
+    // echo '<pre>';
+     var_dump($user);
+    // // j'ai l'impression que ça récupére 0 ligne
+    // echo '</pre>';
+    
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +38,7 @@
                     <div class="card mb-4">
                         <div class="card-body text-center">
                             <img src="img/user.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 200px;">
-                            <h5 class="my-3"><?php user->pseudo ?></h5>
+                            <h5 class="my-3">Pseudo</h5>
                             <p class="text-muted mb-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis odit facilis maxime earum dolorum aspernatur. Ducimus est officiis accusantium accusamus, amet tenetur sunt quia iusto soluta, mollitia dignissimos deserunt quisquam?</p>
                             </br>
                             <div class="d-flex justify-content-center mb-2">

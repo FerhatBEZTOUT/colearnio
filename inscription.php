@@ -108,10 +108,8 @@ if (isset($_POST['envoi'])){
     </form>
     
   </div>
-  <?php
-    include_once 'View/footer.php';
-  ?>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
   <script src="script/func.js"></script>
   <script src="script/inscr.js"></script>
 </body>
