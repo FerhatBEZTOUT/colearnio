@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
-require '../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 //Create an instance; passing `true` enables exceptions
 
@@ -34,12 +34,12 @@ function envoyerMail($email,$nom,$prenom,$key) {
         $mail->AltBody = 'Valider votre compte en cliquant sur ce lien : http://colearnio.alwaysdata.net/validation?key='.$key;
     
         $mail->send();
-        echo 'Message has been sent';
+       
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         $error = false;
     }
 }
-envoyerMail('ferhatbeztout@gmail.com','beztout','ferhat','12345679');
+
 
 ?>

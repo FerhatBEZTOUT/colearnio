@@ -15,16 +15,63 @@ function getUserById($id){
     }
 }
 
-// function getFormationById($id){
-//     try {
-//         $conn = newConnect();
-//         $query = $conn->prepare("SELECT nomFormation FROM formation, suivre WHERE formation.idFormation = suivre.idFormation AND idUser=?");
-//         $query->execute(array($id));
-//         $r = $query->fetchAll();
-//         return $r; // $r = resultat fetch_obj c mieux quand même , regarde le résultat avec tu verras
-//     } catch (PDOException $e) {
-//        echo $e->getMessage();
-//     }
-// }
 
-?>
+
+ function getUserByKey($cle) {
+    include_once 'connexionBD.php';
+    
+    try {
+        $conn = newConnect();
+        $query = $conn->prepare("SELECT * FROM utilisateur WHERE cle=?");
+        $query->execute(array($cle));
+        $resultat =  $query->fetch(PDO::FETCH_OBJ);
+        return $resultat;
+
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+   }
+
+    function validateUser($cle) {
+    include_once 'connexionBD.php';
+    $conn = newConnect();
+    try {
+
+        $query = $conn->prepare("UPDATE utilisateur SET isValidMail=? WHERE cle=?");
+        $resultat = $query->execute(array(1,$cle));
+
+        return $resultat;
+
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    
+   }
+
+    function getUserByEmail($email) {
+    include_once 'connexionBD.php';
+    
+    try {
+        $conn = newConnect();
+        $query = $conn->prepare("SELECT * FROM utilisateur WHERE email=?");
+        $query->execute(array($email));
+        $resultat = $query->fetch(PDO::FETCH_OBJ); 
+        
+        return $resultat;
+        
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+   }
+   
+    function inscrire(string $nom,string $prenom,string $pseudo, string $email, string $mdp, string $cle) {
+          
+          $conn = newConnect();
+          $q = $conn->prepare('INSERT INTO utilisateur(nom,prenom,pseudo,email,mdp,isValidMail,cle,dateTimeInscri)
+          VALUES (?,?,?,?,?,?,?,?)');
+          $r = $q->execute(array($nom,$prenom,$pseudo,$email,$mdp,0,$cle,date("Y-m-d H:i:s")));
+
+          return $r;
+   }
+
+   

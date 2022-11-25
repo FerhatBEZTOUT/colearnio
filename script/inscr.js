@@ -42,14 +42,8 @@ $(document).ready(function () {
                     else {
                         r = JSON.parse(response);
                         err = false;
-                        
-                        for(var keyvalue in r ){
-                            
-                            if (value==0) {
-                                err = true;
-                                break;
-                            }
-                        }
+                        grecaptcha.reset();
+                        console.log(response);
                     }
                 } else {
 
@@ -57,5 +51,6 @@ $(document).ready(function () {
             }
         });
     })
+    
 });
 
