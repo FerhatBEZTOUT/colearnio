@@ -2,43 +2,21 @@
     if(!session_id()){
         session_start();
     }
-    //traiter date de naissance et image
 
-    // __DIR__ c'est pour le site Alwaysdata , 
-    /// ne pas mettre __DIR__ cause des erreurs, il arrive pas à trouver le chemin relatif
     include_once __DIR__.'/Model/connexionBD.php';  
     include __DIR__.'/query/user.php';
 
     $conn = newConnect(); 
-   
-    //var_dump($user);
-
+    //use $_GET[]
+    $user = getUserById(2); 
     
-
-    if(isset($_POST['submit'])){
-        // echo "yes";
-        $modifUser = $conn->prepare('UPDATE utilisateur set nom="'.$_POST['nom'].'", prenom="'.$_POST['prenom'].'", pseudo="'.$_POST['pseudo'].'", descripUser="'.$_POST['description'].'", rue="'.$_POST['rue'].'", codePost="'.$_POST['codePost'].'", ville="'.$_POST['ville'].'", telephone="'.$_POST['tel'].'", email="'.$_POST['email'].'", niveau="'.$_POST['niveau'].'" WHERE idUser=2');
-        $modifUser->execute();
-        $modifUser = $modifUser->fetch(PDO::FETCH_OBJ);
-
-        $form = $conn->prepare('SELECT idFormation FROM suivre WHERE idUser = 2');
-        $form->execute();
-        $form = $form->fetch(PDO::FETCH_OBJ);
-        //var_dump($form);
-        //$id = intval($form[0]);
-
-        $modiFormation = $conn->prepare('UPDATE FORMATION set nomFormation="'.$_POST['specialite'].'" WHERE idFormation=1'); //$form->idFormation
-        $modiFormation->execute();
-        $modiFormation = $modiFormation->fetch(PDO::FETCH_OBJ);
-    }
-
-    $user = getUserById(2);  
-
     $query = $conn->prepare('SELECT nomFormation FROM formation, suivre WHERE formation.idFormation = suivre.idFormation AND idUser=2');
     $query->execute();
     $formation = $query->fetch(PDO::FETCH_OBJ);
-    //var_dump($formation);
+
+    //if(isset($_POST['contacter'])) header('Location: messagerie.php');
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -48,19 +26,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="css/inscr.css">
-    <title>Profil</title>
+    <title>Document</title>
 </head>
 <body>
     <section>
         <div class="container py-5">
-            <form method="POST" action="">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body text-center">
                             <img src="img/user.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 200px;">
-                            <h5 class="my-3"><input type="text" name="pseudo" value="<?=$user->pseudo;?>"></h5>
-                                <input type="text" name="description" value="<?=$user->descripUser;?>">
+                            <h5 class="my-3"><?=$user->pseudo;?></h5>
+                            <p class="text-muted mb-1"><?=$user->descripUser;?></p>
+                            </br>
+                            <div class="d-flex justify-content-center mb-2">
+                                <form method="POST" action="">
+                                <button type="button" class="btn btn-outline-primary ms-1" name="contacter">Contacter</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -72,102 +55,107 @@
                                 <p class="mb-0" style="font-weight:bold;";>Nom</p>
                             </div>
                             <div class="info col-sm-9">
-                                <input class="text-muted mb-0" type="text" name="nom" value="<?=$user->nom;?>">
+                                <p class="text-muted mb-0"><?=$user->nom;?></p>
                             </div>
                         </div>
-                       
+
                         <div class="case row">
                             <div class="donnee col-sm-3">
                                 <p class="mb-0" style="font-weight:bold;";>Prenom</p>
                             </div>
                             <div class="info col-sm-9">
-                                <input class="text-muted mb-0" type="text" name="prenom" value="<?=$user->prenom;?>">
-                            </div>
-                        </div>
-
-                        <div class="case row">
-                            <div class="donnee col-sm-3">
-                                <p class="mb-0" style="font-weight:bold;">Email</p>
-                            </div>
-                            <div class="info col-sm-9">
-                                <input class="text-muted mb-0" type="text" name="email" value="<?=$user->email;?>">
+                                <p class="text-muted mb-0"><?=$user->prenom;?></p>
                             </div>
                         </div>
                        
                         <div class="case row">
                             <div class="donnee col-sm-3">
-                                <p class="mb-0" style="font-weight:bold;">Age</p>
+                                <p class="mb-0" style="font-weight:bold;">Email</p>
                             </div>
                             <div class="info col-sm-9">
-                                <p class="text-muted mb-0">18</p>
+                                <p class="text-muted mb-0"><?=$user->prenom;?></p>
                             </div>
                         </div>
+                        <?php if($user->dateNaiss != NULL){?>
+                        <div class="case row">
+                            <div class="donnee col-sm-3">
+                                <p class="mb-0" style="font-weight:bold;">Date de naissance</p>
+                            </div>
+                            <div class="info col-sm-9">
+                                <p class="text-muted mb-0"><?=$user->dateNaiss;?></p>
+                            </div>
+                        </div>
+                        <?php } ?>
                         
+                        <?php if($user->telephone != NULL){?>
                         <div class="case row">
                             <div class="donnee col-sm-3">
                                 <p class="mb-0" style="font-weight:bold;">Telephone</p>
                             </div>
                             <div class="info col-sm-9">
-                            <input class="text-muted mb-0" type="text" name="tel" value="<?=$user->telephone;?>">
+                                <p class="text-muted mb-0"><?=$user->telephone;?></p>
                             </div>
                         </div>
+                        <?php } ?>
 
+                        <?php if($user->ville != NULL){?>
                         <div class="case row">
                             <div class="donnee col-sm-3">
                                 <p class="mb-0" style="font-weight:bold;">Ville</p>
                             </div>
                             <div class="info col-sm-9">
-                            <input class="text-muted mb-0" type="text" name="ville" value="<?=$user->ville;?>">
+                                <p class="text-muted mb-0"><?=$user->ville;?></p>
                             </div>
                         </div>
+                        <?php } ?>
 
+                        <?php if($user->rue != NULL){?>
                         <div class="case row">
                             <div class="donnee col-sm-3">
                                 <p class="mb-0" style="font-weight:bold;">Rue</p>
                             </div>
                             <div class="info col-sm-9">
-                            <input class="text-muted mb-0" type="text" name="rue" value="<?=$user->rue;?>">
+                                <p class="text-muted mb-0"><?=$user->rue;?></p>
                             </div>
                         </div>
-                        
+                        <?php } ?>
+
+                        <?php if($user->codePost != NULL){?>
                         <div class="case row" style="margin-bottom:10px;">
                             <div class="donnee col-sm-3">
                                 <p class="mb-0" style="font-weight:bold;">Code Postal</p>
                             </div>
                             <div class="info col-sm-9">
-                            <input class="text-muted mb-0" type="text" name="codePost" value="<?=$user->codePost;?>">
+                                <p class="text-muted mb-0"><?=$user->codePost;?></p>
                             </div>
                         </div>
-                        
-
-
+                        <?php } ?>
                     </div>
                     </br>
+
                     <div class="card mb-4">
                         <h5 class="text-center" style="padding:15px";>Formation</h5>
+                        <?php if($user->niveau != NULL){?>
                         <div class="case row">
                             <div class="donnee col-sm-3">
                                 <p class="mb-0" style="font-weight:bold;">Niveau</p>
                             </div>
                             <div class="info col-sm-9">
-                                <input class="text-muted mb-0" type="text" name="niveau" value="<?=$user->niveau;?>">
+                                <p class="text-muted mb-0"><?=$user->niveau;?></p>
                             </div>
                         </div>
+                        <?php } ?>
                         <div class="case row" style="margin-bottom:10px;">
                             <div class="donnee col-sm-3">
                                 <p class="mb-0" style="font-weight:bold;">Specialite</p>
                             </div>
                             <div class="info col-sm-9">
-                                <input class="text-muted mb-0" type="text" name="specialite" value="<?=$formation->nomFormation;?>">
+                                <p class="text-muted mb-0"><?=$formation->nomFormation;?></p>
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-center mb-2">
-                        <input type="submit" class="btn btn-outline-primary ms-1" name="submit" value="Update">
-                    </div>
                 </div>
             </div>
-            </form>
         </div>
     </section>
     
