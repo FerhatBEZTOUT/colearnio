@@ -15,7 +15,8 @@ $user = getUserById(7);
 $query = "SELECT niveau,ville FROM utilisateur where  idUser = $user->idUser";
 $query = $conn->prepare($query);
 $query->execute();
-
+//$for = $query->fetch(PDO::FETCH_OBJ);
+//var_dump($for);
 
 ?>
 
@@ -76,28 +77,29 @@ $query->execute();
                                     </select>
                                 </div>
                             </div>
-                            <div style="display: flex ;margin-top: 5%">
-                                <div class="col-sm-3">
-                                    <p class="mb-0" style="font-weight:bold;margin-top: 15%;margin-right: 40%">
-                                        Niveau</p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <input style="border: 1px solid black;margin-top: 10%;width: 200%;height: 30px"
-                                           name="niveau" value="<?= $user->niveau; ?>">
+                            <!--                            <div style="display: flex ;margin-top: 5%">-->
+                            <!--                                <div class="col-sm-3">-->
+                            <!--                                    <p class="mb-0" style="font-weight:bold;margin-top: 15%;margin-right: 40%">-->
+                            <!--                                        Niveau</p>-->
+                            <!--                                </div>-->
+                            <!--                                <div class="col-sm-3">-->
+                            <!--                                    <input style="border: 1px solid black;margin-top: 10%;width: 200%;height: 30px"-->
+                            <!--                                           name="niveau" value="--><!--">-->
+                            <!---->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                            <!--                            <div style="display: flex;margin-top: 5%">-->
+                            <!--                                <div class="col-sm-3">-->
+                            <!--                                    <p class="mb-0" style="font-weight:bold;margin-top: 15%;margin-right: 50%" ;>-->
+                            <!--                                        Ville</p>-->
+                            <!--                                </div>-->
+                            <!--                                <div class="col-sm-3">-->
+                            <!--                                    <input style="border: 1px solid black;margin-top: 10%;width: 200%;height: 30px"-->
+                            <!--                                           name="ville" value="--><!--">-->
+                            <!---->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
 
-                                </div>
-                            </div>
-                            <div style="display: flex;margin-top: 5%">
-                                <div class="col-sm-3">
-                                    <p class="mb-0" style="font-weight:bold;margin-top: 15%;margin-right: 50%" ;>
-                                        Ville</p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <input style="border: 1px solid black;margin-top: 10%;width: 200%;height: 30px"
-                                           name="ville" value="<?= $user->ville; ?>">
-
-                                </div>
-                            </div>
                             <div style="display: flex;margin-top: 5%">
                                 <div class="col-sm-3">
                                     <p class="mb-0" style="font-weight:bold;margin-top: 10%;margin-right: 10%">
@@ -172,22 +174,23 @@ $query->execute();
 
                         <div class="table-responsive">
                             <?php
-                            $etreDispo  = "SELECT idUser,intitule FROM cours,etreDispo where cours.idCours=etreDispo.idCours AND idUser = $user->idUser";
+                            $etreDispo  = "SELECT idUser,intitule,dateDeb,dateFin FROM cours,etreDispo where cours.idCours=etreDispo.idCours AND idUser = $user->idUser";
                             $etreDispo = $conn->prepare($etreDispo);
                             $etreDispo->execute();
                             if (isset($_POST['submit'])) {
                                 $user = $_POST['idUser'];
                                 $cours = $_POST['idCours'];
-                                $niveau = $_POST['niveau'];
-                                $ville = $_POST['ville'];
+//                                $niveau = $_POST['niveau'];
+                                $Motivation = $_POST['motivation'];
                                 $dateDeb = $_POST['dateDeb'];
                                 $dateFin = $_POST['dateFin'];
                                 $typeDispo = $_POST['typeDispo'];
                                 $enDuo = $_POST['enDuo'];
 
-                                $sql = $conn->prepare("INSERT INTO etreDispo (idUser,idCours,dateDeb,dateFin,typeDispo,enDuo) VALUES (:user,:cours,:dateDeb,:dateFin,:typeDispo,:enDuo)");
+                                $sql = $conn->prepare("INSERT INTO etreDispo (idUser,idCours,dateDeb,dateFin,typeDispo,enDuo,Motivation) VALUES (:user,:cours,:dateDeb,:dateFin,:typeDispo,:enDuo,:motivation)");
                                 $sql->bindParam(':user', $user);
                                 $sql->bindParam(':cours', $cours);
+                                $sql->bindParam(':motivation', $Motivation);
                                 $sql->bindParam(':dateDeb', $dateDeb);
                                 $sql->bindParam(':dateFin', $dateFin);
                                 $sql->bindParam(':typeDispo', $typeDispo);
@@ -200,8 +203,9 @@ $query->execute();
                                 <tr>
                                     <th>idUser</th>
                                     <th>Cours</th>
-                                    <th>Niveau</th>
-                                    <th>Ville</th>
+                                    <th>dateDeb</th>
+                                    <th>dateFin</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -211,11 +215,9 @@ $query->execute();
                                     echo "<tr>";
                                     echo "<td>" . $row['idUser'] . "</td>";
                                     echo "<td>" . $row['intitule'] . "</td>";
-//                                    while ($row1 = $query->fetch()) {
-//                                        echo "<td>" . $row1['niveau'] . "</td>";
-//                                        echo "<td>" . $row1['ville'] . "</td>";
-//                                        echo "</tr>";
-//                                    }
+                                    echo "<td>" . $row['dateDeb'] . "</td>";
+                                    echo "<td>" . $row['dateFin'] . "</td>";
+
 
                                 }
 
@@ -232,4 +234,5 @@ $query->execute();
 </section>
 
 </body>
+</html>
 </html>
