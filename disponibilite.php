@@ -8,7 +8,7 @@ include __DIR__ . '/query/user.php';
 
 
 $conn = newConnect();
-$user = getUserById(7);
+$user = getUserById(3);
 
 //$user = getUserById('id');
 
@@ -234,5 +234,4 @@ $query->execute();
 </section>
 
 </body>
-</html>
 </html>
