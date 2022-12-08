@@ -8,7 +8,7 @@ include __DIR__ . '/query/user.php';
 
 $conn = newConnect();
 //use $_GET[]
-$user = getUserById(7);
+$user = getUserById(3);
 
 $query = "SELECT nomFormation FROM formation, suivre WHERE formation.idFormation = suivre.idFormation AND 
                                                  idUser = $user->idUser";
