@@ -17,7 +17,7 @@ function getUserById($id){
 
 
  function getUserByKey($cle) {
-    include_once 'connexionBD.php';
+    
     
     try {
         $conn = newConnect();
@@ -32,7 +32,7 @@ function getUserById($id){
    }
 
     function validateUser($cle) {
-    include_once 'connexionBD.php';
+   
     $conn = newConnect();
     try {
 
@@ -48,7 +48,7 @@ function getUserById($id){
    }
 
     function getUserByEmail($email) {
-    include_once 'connexionBD.php';
+    
     
     try {
         $conn = newConnect();
@@ -74,3 +74,16 @@ function getUserById($id){
    }
 
    
+function getVilleByID($idVille) {
+    try {
+        $conn = newConnect();
+        $query = $conn->prepare("SELECT nom_ville FROM ville WHERE id=?");
+        $query->execute(array($idVille));
+        $resultat = $query->fetch(PDO::FETCH_OBJ); 
+        
+        return $resultat;
+        
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}

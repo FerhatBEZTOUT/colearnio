@@ -36,7 +36,7 @@ if (isset($_POST['g-recaptcha-response'])){
 $result = CheckCaptcha($_POST['g-recaptcha-response']);
 if ($result['success']) {
     
-    if(isset($_POST['nom'])){
+    if(isset($_POST['nom'],$_POST['prenom'] ,$_POST['pseudo'], $_POST['email'], $_POST['mdp'] ,$_POST['confmdp'])){
         // Tableau pour stocker les erreurs 
         // 0 = pas d'erreur
         // 1 = champ incorrect
@@ -66,11 +66,12 @@ if ($result['success']) {
                 if(!ctype_alpha($prenom)) $err['prenom']=1;
                 if(!preg_match('/^[A-Za-z0-9_-]{3,20}$/s',$pseudo)) $err['pseudo']=1;
                 if(!filter_var($email,FILTER_VALIDATE_EMAIL))  $err['email']=1;
-                if ((preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/', $mdp))) {
+                if(preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/', $mdp)) {
                     if($mdp!=$confmdp) { $err['mdp']=1; $err['confmdp']=1;
                     }
                  } else {
-                    $err['mdp']=0;
+                    
+                    $err['mdp']=1;
                 }
 
                 $error = false;
@@ -90,7 +91,7 @@ if ($result['success']) {
                     } else {
                         $hashmdp = password_hash($mdp, PASSWORD_DEFAULT);
                         $key = password_hash($nom.date("Y-m-d H:i:s"),PASSWORD_DEFAULT);
-                        inscrire($nom,$prenom,$pseudo,$email,$mdp,$key);
+                        inscrire($nom,$prenom,$pseudo,$email,$hashmdp,$key);
                         envoyerMail($email,$nom,$prenom,$key);
                     }
                     
@@ -105,8 +106,25 @@ if ($result['success']) {
             if(empty($_POST['prenom']))     $err['prenom']=2;
             if(empty($_POST['pseudo']))     $err['pseudo']=2;
             if(empty($_POST['email']))      $err['email']=2;
-            if(empty($_POST['mdp']))        $err['mdp']=2;
-            if(empty($_POST['confmdp']))    $err['confmdp']=2;
+            if(empty($_POST['mdp'])) {
+                $err['mdp']=2;
+            } else {
+                if(preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/',htmlentities( $_POST['mdp']))) {
+                    if(htmlentities($_POST['mdp'])!=htmlentities($_POST['confmdp'])) { $err['confmdp']=1;
+                    }
+                 } else {
+                    
+                    $err['mdp']=1;
+                }
+            }        
+                
+            if(empty($_POST['confmdp'])) {
+                $err['confmdp']=2;
+            } else {
+                if(htmlentities($_POST['mdp'])!=htmlentities($_POST['confmdp'])) { $err['confmdp']=1;
+                }
+            }    
+           
 
             echo json_encode($err);
             }

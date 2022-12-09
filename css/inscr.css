@@ -46,7 +46,8 @@ body {
 }
 
 input{
-    /* border-style: none; */
+    border-style: none;
+    border-width: 2px;
 }
 
 .partenaire-container{
@@ -127,4 +128,15 @@ input{
 .image-part img{
     width: 100%;
     height: 100%;
+}
+
+.inputerror {
+    border-color: red;
+    border-width: 2px;
+}
+
+
+.error-span {
+    font-size: small;
+    color: red;
 }

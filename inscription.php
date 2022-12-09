@@ -7,8 +7,8 @@ if (isset($_SESSION['connecté'])) {
   header('location:index.php');
 }
 
-if (isset($_POST['envoi'])){
-  if(empty($_POST['nom'])) {
+if (isset($_POST['envoi'])) {
+  if (empty($_POST['nom'])) {
     echo 'empty nom';
   }
 }
@@ -25,6 +25,7 @@ if (isset($_POST['envoi'])){
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <link rel="stylesheet" href="css/inscr.css">
+  <link rel="shortcut icon" href="/img/logo.ico" type="image/x-icon">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <title>Colearnio, apprendre ensemble</title>
 </head>
@@ -32,30 +33,33 @@ if (isset($_POST['envoi'])){
 <body class="vh-100">
 
   <div class="container d-flex justify-content-center align-items-center  vh-100">
-  
+
     <form method="POST" action="" class="form-inscr p-3" id="formInscr">
-    
+
       <h2 class="text-center" style="color:#0d6efd;">Inscription</h2>
       <div class="text-center">
-          <p class="error invisible" id="error"></p>
+        <p class="error invisible" id="error"></p>
       </div>
       <div class="form-row">
 
-        <div class="row">
-          <div class="form-group col-md-6">
+        <div class="row ">
+          <div class="form-group col-md-6 mt-2">
             <label for="inputNom">Nom</label>
-            <input type="text" class="form-control" id="inputNom" name="nom" autocomplete="off" placeholder="Nom">
+            <input type="text" class="form-control" id="nom" name="nom" autocomplete="off" placeholder="Nom">
+            <span id="error-nom" class=" error-span d-none"></span>
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6 mt-2">
             <label for="inputPrenom">Prénom</label>
-            <input type="text" class="form-control" id="inputPrenom" name="prenom" autocomplete="off" placeholder="Prénom">
+            <input type="text" class="form-control" id="prenom" name="prenom" autocomplete="off" placeholder="Prénom">
+            <span id="error-prenom" class=" error-span d-none"></span>
           </div>
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group mt-2">
           <label for="inputNom">Pseudo</label>
-          <input type="text" class="form-control" id="inputPseudo" name="pseudo" autocomplete="off" placeholder="Pseudo">
+          <input type="text" class="form-control" id="pseudo" name="pseudo" autocomplete="off" placeholder="Pseudo">
+          <span id="error-pseudo" class=" error-span d-none"></span>
           <div id="feedbackdispo" class="invisible">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#26c40e" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
@@ -74,39 +78,41 @@ if (isset($_POST['envoi'])){
 
         </div>
 
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-12 mt-2">
           <label for="inputEmail4">Email</label>
-          <input type="email" class="form-control" id="inputEmail4" name="email" autocomplete="off" placeholder="joedoe@gmail.com">
+          <input  type="email" class="form-control" id="email" name="email" autocomplete="off" placeholder="joedoe@gmail.com">
+          <span id="error-email" class=" error-span d-none"></span>
         </div>
 
         <div class="row">
-          <div class="col-sm-6 col-md-6">
+          <div class="col-sm-6 col-md-6 mt-2">
             <label for="inputPassword4">Mot de passe</label>
-            <input type="password" class="form-control" class="inputPassword4" name="mdp" autocomplete="off" placeholder="Mot de passe">
+            <input type="password" class="form-control inputPassword4" id="mdp" name="mdp" autocomplete="off" placeholder="Mot de passe">
+            <span id="error-mdp" class=" error-span d-none"></span>
           </div>
-          <div class="col-sm-6 col-md-6">
+          <div class="col-sm-6 col-md-6 mt-2">
             <label for="inputPassword4">Confirmation</label>
-            <input type="password" class="form-control" class="inputPassword4" name="confmdp" autocomplete="off" placeholder="Confirmer mot de passe">
+            <input type="password" class="form-control inputPassword4" id="confmdp" name="confmdp" autocomplete="off" placeholder="Confirmer mot de passe">
+            <span id="error-confmdp" class=" error-span d-none"></span>
           </div>
         </div>
       </div>
-      <div class="text-center my-1 col-sm-6 col-md-12">
+      <div class="text-center col-sm-6 col-md-12">
         <button type="submit" class="btn btn-primary my-2" name="envoi" id="envoi">S'inscrire</button>
       </div>
       <script type="text/javascript">
-  var onloadCallback = function() {
-    console.log("grecaptcha is ready!");
-  };
-</script>
-<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-    async defer>
-</script>
+        var onloadCallback = function() {
+          console.log("grecaptcha is ready!");
+        };
+      </script>
+      <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+      </script>
       <div class="d-flex justify-content-center">
-         <div class="g-recaptcha text-center" data-sitekey="6LdlCgkjAAAAABxZ5Gvk_ogblkTkGjyAPUci6qof" name="g-recaptcha-response"></div>  
+        <div class="g-recaptcha text-center" data-sitekey="6LdlCgkjAAAAABxZ5Gvk_ogblkTkGjyAPUci6qof" name="g-recaptcha-response"></div>
       </div>
-      
+
     </form>
-    
+
   </div>
 
   <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
@@ -115,4 +121,3 @@ if (isset($_POST['envoi'])){
 </body>
 
 </html>
-

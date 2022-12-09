@@ -14,7 +14,7 @@ function envoyerMail($email,$nom,$prenom,$key) {
     $error = false;
     try {
         //Server settings
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host       = 'smtp-colearnio.alwaysdata.net';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
@@ -30,7 +30,9 @@ function envoyerMail($email,$nom,$prenom,$key) {
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Validation de votre compte Colearnio';
-        $mail->Body    = 'Valider votre compte en <a href="http://colearnio.alwaysdata.net/validation?key='.$key.'">cliquant ici</a>';
+        $mail->Body    = '<h1>Bienvenue dans Colearnio</h1>
+        Valider votre compte en <a href="http://colearnio.alwaysdata.net/validation?key='.$key.'">cliquant ici</a>
+        <p>Si vous n\'etes pas à l\'origine de cette inscription, merci d\'ignorer ce message et de ne pas cliquer sur le lien de validation</p>';
         $mail->AltBody = 'Valider votre compte en cliquant sur ce lien : http://colearnio.alwaysdata.net/validation?key='.$key;
     
         $mail->send();

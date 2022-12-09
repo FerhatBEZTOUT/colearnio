@@ -1,6 +1,3 @@
-<?php
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/img/logo.ico" type="image/x-icon">
     <title>Colearnio - Connexion </title>
 </head>
 <body>
@@ -20,7 +18,7 @@
         <div class="card" style="border-radius: 1rem;">
           <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img src="https://img.freepik.com/photos-gratuite/discuter-cours-video_1098-13061.jpg?w=740&t=st=1667096332~exp=1667096932~hmac=d1c69e69029ba5140a9e2d67f033e4b89c54f268b4e11f0d4623d4e5768cc696"
+              <img src="./img/login.svg"
                 alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height:100%" />
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">

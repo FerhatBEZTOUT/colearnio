@@ -12,7 +12,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +27,7 @@
     
   <section id="accueil">
     <div class="navbar">
-        <img src="img/logo.png" class="logo">        
+        <img src="img/logo.png" class="logo" alt="logo site">        
             <nav>
                 <ul>
                 <li><a href="connexion.php">Se connecter</a></li>
@@ -47,28 +47,28 @@
   <section id="milieu">
     <div class="mil">
         <p>CoLearnio</p>
-        <h1>CoLearnio vous permet de trouver des partenaires pour réviser vos cours, partager vos 
-            connaissances, compétences et astuces.</h1>
+        <h2>CoLearnio vous permet de trouver des partenaires pour réviser vos cours, partager vos 
+            connaissances, compétences et astuces.</h2>
     </div>
 
     <div class="image">
         <div class="im1">
-            <h1>Restez en contact</h1>
+            <h2>Restez en contact</h2>
             <div class="im1-desc">
                 <p>Trouvez des personnes avec qui vous vous partegerez vos connaissances et restez en contact</p>
             </div>
         </div>
         <div class="img1">
-            <img src="img/photo1.webp">
+            <img src="img/photo1.webp" alt="chat application">
         </div>
         <div class="im2">
-            <h1>Devant chez vous</h1>
+            <h2>Devant chez vous</h2>
             <div class="im2-desc">
                 <p>Trouvez les personnes les plus proches de vous et qui ont les mêmes intérêts que vous afin que vous puissiez réviser ensembles.</p>
             </div>
         </div>
         <div class="img2">
-            <img src="img/photo2.webp">
+            <img src="img/photo2.webp" alt="geolocalisation">
         </div>
     </div>
   </section>
@@ -77,12 +77,12 @@
 <section id="message">
     <div class="mil">
         <p>CoLearnio</p>
-        <h1>AVIS</h1>
+        <h2>AVIS</h2>
     </div>
     <div class="name">
         <div class="-col">
             <div class="utilisateur">
-                <img src="img/user.jpg" >
+                <img src="img/user.jpg" alt="avatar d'un utilisateur">
                 <div class="info">
                     <h4>Anna Emy <i class="fa fa-instagram"></i></h4>
                     
@@ -92,7 +92,7 @@
         </div>
         <div class="-col">
             <div class="utilisateur">
-                <img src="img/utilisateur.png" >
+                <img src="img/utilisateur.png" alt="avatar d'un utilisateur">
                 <div class="info">
                     <h4>David dermani <i class="fa fa-twitter"></i></h4>
                     
@@ -116,11 +116,11 @@
     </div>
     <div class="row">
     <div class="left">
-        <h1>COLEARNIO </h1>
+        <h2>COLEARNIO</h2>
         <P>Apprendre ensemble.</P>
     </div>
         <div class="right">
-            <h1>Contact</h1>
+            <h2>Contact</h2>
             <P> 2 Av. Adolphe Chauvin,
                 95300 Pontoise <i class="fa fa-paper-plane"></i></P>
                 
@@ -128,9 +128,9 @@
         </div>
     </div>
         <div class="Rsociaux">
-            <i class="fa fa-facebook"></i>
-            <i class="fa fa-instagram"></i>
-            <i class="fa fa-twitter"></i>
+            <a href="https://facebook.com/fonusrax" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a href="https://instagram.com/colearnio" target="_blank"><i class="fa fa-instagram"></i></a>
+            <a href="https://twitter.com/ferhatbeztout" target="_blank"><i class="fa fa-twitter"></i></a>
         </div>
     </section>
 
