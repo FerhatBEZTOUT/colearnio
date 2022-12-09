@@ -17,7 +17,7 @@
 
     if(isset($_POST['submit'])){
         // echo "yes";
-        $modifUser = $conn->prepare('UPDATE utilisateur set nom="'.$_POST['nom'].'", prenom="'.$_POST['prenom'].'", pseudo="'.$_POST['pseudo'].'", descripUser="'.$_POST['description'].'", rue="'.$_POST['rue'].'", codePost="'.$_POST['codePost'].'", ville="'.$_POST['ville'].'", telephone="'.$_POST['tel'].'", email="'.$_POST['email'].'", niveau="'.$_POST['niveau'].'" WHERE idUser=2');
+        $modifUser = $conn->prepare('UPDATE utilisateur set nom="'.$_POST['nom'].'", prenom="'.$_POST['prenom'].'", pseudo="'.$_POST['pseudo'].'", descripUser="'.$_POST['description'].'", rue="'.$_POST['rue'].'", codePost="'.$_POST['codePost'].'", ville="'.$_POST['ville'].'", telephone="'.$_POST['tel'].'", email="'.$_POST['email'].'", dateNaiss="'.$_POST['dateNaiss'].'",niveau="'.$_POST['niveau'].'" WHERE idUser=2');
         $modifUser->execute();
         $modifUser = $modifUser->fetch(PDO::FETCH_OBJ);
 
@@ -34,7 +34,7 @@
 
     $user = getUserById(2);  
 
-    $query = $conn->prepare('SELECT nomFormation FROM formation, suivre WHERE formation.idFormation = suivre.idFormation AND idUser=2');
+    $query = $conn->prepare('SELECT nomFormation FROM formation, utilisateur WHERE formation.idFormation = utilisateur.formation AND idUser=2');
     $query->execute();
     $formation = $query->fetch(PDO::FETCH_OBJ);
     //var_dump($formation);
@@ -59,8 +59,8 @@
                     <div class="card mb-4">
                         <div class="card-body text-center">
                             <img src="img/user.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 200px;">
-                            <h5 class="my-3"><input type="text" name="pseudo" value="<?=$user->pseudo;?>"></h5>
-                                <input type="text" name="description" value="<?=$user->descripUser;?>">
+                            <h5 class="my-3"><input class="text-center" type="text" name="pseudo" value="<?=$user->pseudo;?>"></h5>
+                                <input class="text-center" type="text" name="description" value="<?=$user->descripUser;?>">
                         </div>
                     </div>
                 </div>
@@ -96,10 +96,10 @@
                        
                         <div class="case row">
                             <div class="donnee col-sm-3">
-                                <p class="mb-0" style="font-weight:bold;">Age</p>
+                                <p class="mb-0" style="font-weight:bold;">Date de naissance</p>
                             </div>
                             <div class="info col-sm-9">
-                                <p class="text-muted mb-0">18</p>
+                                <input class="text-muted mb-0" type="date" name="dateNaiss" value="<?=$user->dateNaiss;?>">
                             </div>
                         </div>
                         
@@ -163,7 +163,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center mb-2">
-                        <input type="submit" class="btn btn-outline-primary ms-1" name="submit" value="Update">
+                        <input type="submit" class="btn btn-outline-primary ms-1" name="submit" value="Modifier">
                     </div>
                 </div>
             </div>
