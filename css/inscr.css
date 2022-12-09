@@ -10,16 +10,9 @@ html{
     overflow-x: hidden;
 }
 
-body {
-    background-color: rgb(235, 233, 233);
-}
 
 .error {
-    background-color: rgba(196, 28, 28, 0.849);
-    padding-top: 3px;
-    padding-bottom: 3px;
-    color:white;
-    border-radius: 4px;
+    color:red;
 
 }
 

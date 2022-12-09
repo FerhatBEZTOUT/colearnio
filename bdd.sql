@@ -69,10 +69,12 @@ CREATE TABLE utilisateur(
     isAdmin BOOLEAN DEFAULT FALSE NOT NULL,
     noteSite int,
     cmtrSite TEXT,
-
+    formation INT,
+    descripUser TEXT,
 
     CONSTRAINT pk_user PRIMARY KEY(idUser),
-    CONSTRAINT fk_user_ville FOREIGN KEY(ville) REFERENCES ville(idVille)
+     CONSTRAINT fk_user_ville FOREIGN KEY(ville) REFERENCES ville(idVille),
+    CONSTRAINT fk_user_formation FOREIGN KEY(formation) REFERENCES formation(idFormation)
     -- CONSTRAINT ck_dateInsrc CHECK (dateTimeInscri>=CURRENT_TIMESTAMP) (ne fonctionne pas sur alwaysdata)
 
 )ENGINE=INNODB;
@@ -130,6 +132,7 @@ CREATE TABLE etreDispo(
     dateFin DATE NOT NULL,
     typeDispo ENUM ('presentiel','distanciel','both') NOT NULL,
     enDuo BOOLEAN NOT NULL DEFAULT FALSE,
+    motivation VARCHAR(255),
 
     CONSTRAINT pk_etreDispo PRIMARY KEY(idUser, idCours, idVille, dateDeb),
     -- CONSTRAINT ck_dateDeb CHECK (dateDeb>=CURRENT_DATE),

@@ -14,27 +14,16 @@ if (isset($_POST['envoi'])) {
 }
 
 
+$titre = "Colearnio - Inscription";
+include_once __DIR__.'/View/header_index.php';
+
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/inscr.css">
-  <link rel="shortcut icon" href="/img/logo.ico" type="image/x-icon">
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <title>Colearnio, apprendre ensemble</title>
-</head>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <div class="container d-flex justify-content-center align-items-center">
 
-<body class="vh-100">
-
-  <div class="container d-flex justify-content-center align-items-center  vh-100">
-
-    <form method="POST" action="" class="form-inscr p-3" id="formInscr">
+    <form method="POST" action="" class="form-inscr p-3 my-3" id="formInscr">
 
       <h2 class="text-center" style="color:#0d6efd;">Inscription</h2>
       <div class="text-center">
@@ -118,6 +107,8 @@ if (isset($_POST['envoi'])) {
   <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
   <script src="script/func.js"></script>
   <script src="script/inscr.js"></script>
-</body>
 
-</html>
+  <?php 
+
+        include_once __DIR__."/View/footer_index.php";
+?>

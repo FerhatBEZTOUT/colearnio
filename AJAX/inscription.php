@@ -32,9 +32,9 @@ function CheckCaptcha($userResponse) {
 }
 
 
-if (isset($_POST['g-recaptcha-response'])){
-$result = CheckCaptcha($_POST['g-recaptcha-response']);
-if ($result['success']) {
+// if (isset($_POST['g-recaptcha-response'])){
+// $result = CheckCaptcha($_POST['g-recaptcha-response']);
+// if ($result['success']) {
     
     if(isset($_POST['nom'],$_POST['prenom'] ,$_POST['pseudo'], $_POST['email'], $_POST['mdp'] ,$_POST['confmdp'])){
         // Tableau pour stocker les erreurs 
@@ -130,11 +130,11 @@ if ($result['success']) {
             }
         }
         
-}
-else {
-    echo 'invalid_captcha';
-}
-} else {
-    echo 'remplir_captcha';
-}
+// }
+// else {
+//     echo 'invalid_captcha';
+// }
+// } else {
+//     echo 'remplir_captcha';
+// }
 
