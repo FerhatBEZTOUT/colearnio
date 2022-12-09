@@ -30,7 +30,7 @@ html{
 }
 
 .info, .card input{
-    background-color: #7EA0B7;
+    /* background-color: #7EA0B7; */
     padding:1px;
     margin-bottom: 4px;
     width: 300px;
