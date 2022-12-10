@@ -32,9 +32,9 @@ function CheckCaptcha($userResponse) {
 }
 
 
-// if (isset($_POST['g-recaptcha-response'])){
-// $result = CheckCaptcha($_POST['g-recaptcha-response']);
-// if ($result['success']) {
+if (isset($_POST['g-recaptcha-response'])){
+$result = CheckCaptcha($_POST['g-recaptcha-response']);
+if ($result['success']) {
     
     if(isset($_POST['nom'],$_POST['prenom'] ,$_POST['pseudo'], $_POST['email'], $_POST['mdp'] ,$_POST['confmdp'])){
         // Tableau pour stocker les erreurs 
@@ -85,15 +85,28 @@ function CheckCaptcha($userResponse) {
                 if($error) {
                     echo json_encode($err);
                 } else {
-                    if(verifierEmail($email)=='valid not exist' || verifierEmail($email)=='not valid not exist') {
-                        $err['email']=3;
-                        echo json_encode($err);
-                    } else {
-                        $hashmdp = password_hash($mdp, PASSWORD_DEFAULT);
-                        $key = password_hash($nom.date("Y-m-d H:i:s"),PASSWORD_DEFAULT);
-                        inscrire($nom,$prenom,$pseudo,$email,$hashmdp,$key);
-                        envoyerMail($email,$nom,$prenom,$key);
-                    }
+                    $existEmail = existEmail($email);
+                        if ($existEmail[0]) {
+                            echo "EXIST_EMAIL";
+                        } else {
+                            $existPseudo = existPseudo($pseudo);
+                            if ($existPseudo[0]) {
+                                echo "EXIST_PSEUDO";
+                            } else {
+                                if(verifierEmail($email)=='valid not exist' || verifierEmail($email)=='not valid not exist') {
+                                    $err['email']=3;
+                                    echo json_encode($err);
+                                } else {
+                                    $hashmdp = password_hash($mdp, PASSWORD_DEFAULT);
+                                    $key = password_hash($nom.date("Y-m-d H:i:s"),PASSWORD_DEFAULT);
+                                    inscrire($nom,$prenom,$pseudo,$email,$hashmdp,$key);
+                                    envoyerMail($email,$nom,$prenom,$key);
+                                    echo 'INSCR_OK';
+                                }
+                            }
+                            
+                        }
+                    
                     
 
                 }
@@ -130,11 +143,11 @@ function CheckCaptcha($userResponse) {
             }
         }
         
-// }
-// else {
-//     echo 'invalid_captcha';
-// }
-// } else {
-//     echo 'remplir_captcha';
-// }
+}
+else {
+    echo 'invalid_captcha';
+}
+} else {
+    echo 'remplir_captcha';
+}
 

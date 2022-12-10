@@ -31,16 +31,39 @@ $(document).ready(function () {
         e.preventDefault();
         $.ajax({
             type: "post",
+            beforeSend: function () {
+                $('.load-img').removeClass("invisible");
+                
+                $('#error-confmdp').addClass("d-none");
+                $('#error-mdp').addClass("d-none");
+                $('#error-email').addClass("d-none");
+                $('#error-pseudo').addClass("d-none");
+                $('#error-nom').addClass("d-none");
+                $('#error-prenom').addClass("d-none");
+
+                $("input").removeClass("inputerror");
+                $("#error").addClass("invisible");
+            },
             url: "../AJAX/inscription.php",
             data: $(this).serialize(),
             success: function (response) {
                 if (response != '') {
                     
                     if (response == 'invalid_captcha') {
+                        $("#error").removeClass("invisible");
                         $("#error").text("Captcha invalide, réessayez");
                         grecaptcha.reset();
+                    } else if (response=='EXIST_EMAIL') {
+                        $("#error").removeClass("invisible");
+                        $("#error").text("Vous êtes déjà inscrit avec cet email");
+                    } else if (response=='EXIST_PSEUDO') {
+                        $("#error").removeClass("invisible");
+                        $("#error").text("Ce pseudo existe déjà");
+                    } else if (response=='INSCR_OK') {
+                           location.href = '../profil.php';   // à modifier après (vers confirm_inscr.php)
                     }
                     else {
+                        $("#error").addClass("invisible");
                         arr = JSON.parse(response);
                         err = false;
                         
@@ -134,15 +157,17 @@ $(document).ready(function () {
 
                             
 
-                        } else {
-                            console.log("no error (ligne 63)");
-                            //location.href("../");
                         }
                         
                     }
                 } else {
                     
                 }
+            },
+            complete: function () {
+                console.log("trés bien c fini");
+                $('.load-img').addClass("invisible");
+                
             }
         });
     })

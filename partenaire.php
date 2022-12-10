@@ -115,7 +115,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="col-sm-4">
-                        <p class="mb-0" style="font-weight:bold;margin-left: 40%;ma" ;>Niveau</p>
+                        <p class="mb-0" style="font-weight:bold;margin-left: 40%;ma">Niveau</p>
                     </div>
                     <div class="col-sm-3">
                         <select class="form-select">
@@ -128,7 +128,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="col-sm-4">
-                        <p class="mb-0" style="font-weight:bold;margin-left: 40%" ;>Ville</p>
+                        <p class="mb-0" style="font-weight:bold; margin-left: 40%;">Ville</p>
                     </div>
                     <div class="col-sm-3">
                         <select class="form-select">

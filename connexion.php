@@ -4,14 +4,16 @@ $titre = "Colearnio - Connexion";
 include_once __DIR__ . '/View/header_index.php';
 
 ?>
+ <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <section>
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-10">
-        <div class="card" style="border-radius: 1rem;">
+        <div class="card form-inscr">
           <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img src="./IMG/login.svg" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height:100%" />
+              <img src="./img/login.svg" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height:100%" />
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">

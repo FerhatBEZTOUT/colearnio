@@ -13,7 +13,7 @@ $( document ).ready(function() {
                     window.location.href = '../dashboard.php';
                 }
                 else if (response=='user') {
-                    window.location.href = '../partenaire.php';
+                    window.location.href = '../profile.php';  // à modifier "partenaire.php"
                 } else if (response=='NOT FOUND') {
                     $("#error").html("Email ou mot de passe incorrect");
                     $("#error").removeClass("invisible");
@@ -24,7 +24,7 @@ $( document ).ready(function() {
                     $("#error").removeClass("invisible");
                     $("#error").effect("shake");
                 } else {
-                    $("#error").html("Email non confirmé. Renvoyer le mail de confirmation"+response);
+                    $("#error").html('Email non confirmé. <a href="renvoyer_mail.php?email='+response+'">Renvoyer l\'email de confirmation</a>');
                     $("#error").removeClass("invisible");
                     $("#error").effect("shake");
                     

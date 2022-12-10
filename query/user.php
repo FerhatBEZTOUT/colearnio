@@ -77,9 +77,73 @@ function getUserById($id){
 function getVilleByID($idVille) {
     try {
         $conn = newConnect();
-        $query = $conn->prepare("SELECT nom_ville FROM ville WHERE id=?");
+        $query = $conn->prepare("SELECT nom_ville FROM ville WHERE idVille=?");
         $query->execute(array($idVille));
         $resultat = $query->fetch(PDO::FETCH_OBJ); 
+        
+        return $resultat;
+        
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
+
+function existEmail($email) {
+    try {
+        $conn = newConnect();
+        $query = $conn->prepare("SELECT COUNT(*) FROM utilisateur WHERE email=?");
+        $query->execute(array($email));
+        $resultat = $query->fetch(); 
+        
+        return $resultat;
+        
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+
+}
+
+
+function existPseudo($pseudo) {
+    try {
+        $conn = newConnect();
+        $query = $conn->prepare("SELECT COUNT(*) FROM utilisateur WHERE pseudo=?");
+        $query->execute(array($pseudo));
+        $resultat = $query->fetch(); 
+        
+        return $resultat;
+        
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
+
+
+function updateKey($email,$key){
+    $conn = newConnect();
+    try {
+
+        $query = $conn->prepare("UPDATE utilisateur SET cle=? , dateTimeInscri= ? WHERE email=?");
+        $resultat = $query->execute(array($key,date("Y-m-d H:i:s"),$email));
+
+        return $resultat;
+
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
+
+
+
+function getVilles() {
+    try {
+        $conn = newConnect();
+        $query = $conn->prepare("SELECT * FROM ville");
+        $query->execute();
+        $resultat = $query->fetchAll(PDO::FETCH_OBJ); 
         
         return $resultat;
         

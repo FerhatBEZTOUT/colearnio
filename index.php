@@ -1,14 +1,11 @@
 <?php
+if(!session_id()) {
+    session_start();
+  }
+  
+include_once __DIR__."/Controller/redirect.php";
+redirectFromLanding();
 
-if (isset($_SESSION['connecté'])) {
-    $userType = $_SESSION['userType'];
-
-    if ($userType == 'admin') {
-        header('location:dashboard');
-    } else {
-        header('location:mafiche');
-    }
-}
 ?>
 
 <!DOCTYPE html>

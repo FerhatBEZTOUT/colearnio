@@ -31,7 +31,7 @@ function envoyerMail($email,$nom,$prenom,$key) {
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Validation de votre compte Colearnio';
         $mail->Body    = '<h1>Bienvenue dans Colearnio</h1>
-        Valider votre compte en <a href="http://colearnio.alwaysdata.net/validation?key='.$key.'">cliquant ici</a>
+        Valider votre compte en <a href="https://colearnio.alwaysdata.net/validation.php?key='.$key.'">cliquant ici</a>
         <p>Si vous n\'etes pas à l\'origine de cette inscription, merci d\'ignorer ce message et de ne pas cliquer sur le lien de validation</p>';
         $mail->AltBody = 'Valider votre compte en cliquant sur ce lien : http://colearnio.alwaysdata.net/validation?key='.$key;
     

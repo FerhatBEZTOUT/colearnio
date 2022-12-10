@@ -144,7 +144,7 @@
     }
     
     .info, .card input{
-        background-color: #7EA0B7;
+        
         padding:1px;
         margin-bottom: 4px;
         width: 300px;
@@ -164,7 +164,7 @@
     }
     
     #mdp, #email {
-        background-color: white;
+        background-color: white !important;
     }
     
     

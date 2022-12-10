@@ -3,10 +3,10 @@
 
 function redirectFromLanding(){
     if(isset($_SESSION['connecté'])) {
-        if($_SESSION['user_type']=='emp') {
+        if($_SESSION['user']->isAdmin) {
             header('location:../dashboard.php');
         } else {
-            header('location:../partenaire.php');
+            header('location:../profile.php');  // à changer vers (partenaire.php)
         }
         die();
     }
@@ -15,7 +15,7 @@ function redirectFromLanding(){
 
 function redirectFromMonEspace(){
     if(isset($_SESSION['connecté'])) {
-        if($_SESSION['user_type']=='emp') {
+        if($_SESSION['user']->isAdmin) {
             header('location:../dashboard.php');
             die();
         }
@@ -28,7 +28,7 @@ function redirectFromMonEspace(){
 
 function redirectFromDashboard(){
     if(isset($_SESSION['connecté'])) {
-        if($_SESSION['user_type']=='adh') {
+        if(!$_SESSION['user']->isAdmin) {
             header('location:../partenaire.php');
             die();
         }
