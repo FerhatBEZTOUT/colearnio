@@ -1,0 +1,10 @@
+User-agent : *
+Disallow: /query/
+Disallow: /bdd.sql
+Disallow: /config.ini.php
+Disallow: /Model/
+Disallow: /validation.php
+
+#sitemap
+
+Sitemap: https://www.anthedesign.fr/sitemap_index.xml
