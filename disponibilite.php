@@ -183,11 +183,13 @@ include_once __DIR__ . '/View/header_monespace.php';
                                     echo "<td>" . $row['intitule'] . "</td>";
                                     echo "<td>" . $row['dateDeb'] . "</td>";
                                     echo "<td>" . $row['dateFin'] . "</td>";
-
+                                    echo "</tr>";
 
                                 }
 
                                 ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     </br>
