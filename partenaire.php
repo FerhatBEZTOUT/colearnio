@@ -96,160 +96,103 @@
     <title>Document</title>
 </head>
 <body>
-    <section>
-        <h2 style="text-align:center;">Trouver des partenaires</h2>
-        <div class="container py-5">
-            <div style="margin-top: 2%;margin-left: 5%; display: flex" class="row">
-                <div class="col-lg-3">
-                    <div class="col-sm-4">
-                        <p class="mb-0" style="font-weight:bold;margin-left: 40%" ;>Cours</p>
-                    </div>
-                    <div class="col-sm-3">
-                        <select class="form-select">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="col-sm-4">
-                        <p class="mb-0" style="font-weight:bold;margin-left: 40%;ma">Niveau</p>
-                    </div>
-                    <div class="col-sm-3">
-                        <select class="form-select">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="col-sm-4">
-                        <p class="mb-0" style="font-weight:bold; margin-left: 40%;">Ville</p>
-                    </div>
-                    <div class="col-sm-3">
-                        <select class="form-select">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="col-sm-4">
-                        <p class="mb-0" style="font-weight:bold;margin-left: 40%;color: transparent" ;>ajouter</p>
-                    </div>
-                    <div class="col-sm-4">
-                        <input style="background: #ffffff;border: 1px solid black;width: 95px;height: 37px"
-                               type="submit" name="submit" value="Valider"></div>
 
+        <h2 style="text-align:center;">Trouver des partenaires</h2>
+        <div class="container py-5 offset-md-2">
+            <div class="selection row">
+                <div class="col-lg-4">
+                    <div class="col-sm-3">
+                        <p class="mb-0" style="font-weight:bold;">Cours</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-select" id="cours" name="cours" required>
+                            <option value="">Cours</option>
+                            <?php if ($cours->rowCount() > 0) {
+                                while ($row = $cours->fetch(PDO::FETCH_OBJ)) { ?>
+                                    <option value="<?=$row->idCours;?>"><?= $row->intitule;?></option>
+                                <?php }
+                            } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="col-sm-3">
+                        <p class="mb-0" style="font-weight:bold;">Niveau</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-select" id="niveau" name="niveau" required>
+                            <option value="">Niveau</option>
+                            <option value="1">Bac</option>
+                            <option value="2">L1</option>
+                            <option value="3">L2</option>
+                            <option value="4">L3</option>
+                            <option value="5">M1</option>
+                            <option value="5">M2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="col-sm-3">
+                        <p class="mb-0" style="font-weight:bold;">Ville</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-select" id="ville" name="ville" required>
+                            <option value="">Ville</option>
+                            <?php if ($ville->rowCount() > 0) {
+                                while ($row = $ville->fetch(PDO::FETCH_OBJ)) { ?>
+                                    <option value="<?=$row->idVille;?>"><?= $row->nom_ville;?></option>
+                                <?php }
+                            } ?>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
+    <div id="cr">
         <div class="container"> 
             <div class="row">
+                <?php $i = 1; while ($data=$query->fetch()){?>
                 <div class="col-lg-4">
                     <div class="card partenaire-container">
-                        <div class="row partenaire" data-name="p-1">
-                                <div class="col-sm-8" style="margin: auto;";>
-                                    <img src="img/user.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 100%; margin-left: 5px; margin-top:5px;">
-                                </div>
-                                <div class="col-sm-12" style="text-align:center";>
-                                    <h5>Pseudo</h5>
-                                    <p>Specialite</p>
-                                    <p>Cours</p>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card partenaire-container">
-                        <div class="row partenaire" data-name="p-2">
-                                <div class="col-sm-8" style="margin: auto;";>
-                                    <img src="img/user.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 100%; margin-left: 5px; margin-top:5px;">
-                                </div>
-                                <div class="col-sm-12" style="text-align:center";>
-                                    <h5>Pseudo 2</h5>
-                                    <p>Specialite</p>
-                                    <p>Cours</p>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card partenaire-container">
-                        <div class="row partenaire" data-name="p-3">
+                        <div class="row partenaire" data-name="<?=$i;?>">
                             <div class="col-sm-8" style="margin: auto;";>
                                 <img src="img/user.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 100%; margin-left: 5px; margin-top:5px;">
                             </div>
                             <div class="col-sm-12" style="text-align:center";>
-                                <h5>Pseudo 3</h5>
-                                <p>Specialite</p>
-                                <p>Cours</p>
+                                <h5><?= $data['pseudo'];?></h5>
+                                <p><?= $data['nomFormation'];?></p>
+                                <p><?= $data['intitule'];?></p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <?php $i++;
-                 ?>
+                } ?>
             </div>
-            </div>
-        </div>     
-    </section>
-<div class="partenaire-preview">
-    <div class="preview" data-target="p-1">
-        <i class="fas fa-times"></i>
-        <div class="image-part">
-            <img src="img/user.jpg" alt="avatar" class="rounded-circle img-fluid">
-        </div>
-        <div class="";>
-            <h5>Pseudo</h5>
-            <p>Specialite</p>
-            <p>Cours</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, incidunt blanditiis, perspiciatis itaque reprehenderit animi earum illum dignissimos voluptatibus harum quos fuga ducimus veniam ullam voluptatum quam libero repellendus maxime?</p>
-        </div>
-        <div class="buttons">
-            <a href="#" class="btn btn-outline-primary ms-1">Contacter</a>
-            <a href="#" class="btn btn-outline-primary ms-1">Voir profil</a>
-        </div>
-    </div>
-    <div class="preview" data-target="p-2">
-        <i class="fas fa-times"></i>
-        <div class="image-part">
-            <img src="img/user.jpg" alt="avatar" class="rounded-circle img-fluid">
-        </div>
-        <div class="";>
-            <h5>Pseudo 2</h5>
-            <p>Specialite</p>
-            <p>Cours</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, incidunt blanditiis, perspiciatis itaque reprehenderit animi earum illum dignissimos voluptatibus harum quos fuga ducimus veniam ullam voluptatum quam libero repellendus maxime?</p>
-        </div>
-        <div class="buttons">
-            <a href="#" class="btn btn-outline-primary ms-1">Contacter</a>
-            <a href="#" class="btn btn-outline-primary ms-1">Voir profil</a>
-        </div>
-    </div>
-    <div class="preview" data-target="p-3">
-        <i class="fas fa-times"></i>
-        <div class="image-part">
-            <img src="img/user.jpg" alt="avatar" class="rounded-circle img-fluid">
-        </div>
-        <div class="";>
-            <h5>Pseudo</h5>
-            <p>Specialite</p>
-            <p>Cours</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, incidunt blanditiis, perspiciatis itaque reprehenderit animi earum illum dignissimos voluptatibus harum quos fuga ducimus veniam ullam voluptatum quam libero repellendus maxime?</p>
-        </div>
-        <div class="buttons">
-            <a href="#" class="btn primary-button">Contacter</a>
-            <a href="#" class="btn primary-button">Voir profil</a>
-        </div>
-    </div>
-</div>
+        </div>   
 
+        <div class="partenaire-preview">
+            <?php $j = 1; while ($data1=$test->fetch()){?>
+            <div class="preview" data-target="<?=$j;?>">
+                <i class="fas fa-times"></i>
+                <div class="image-part">
+                    <img src="img/user.jpg" alt="avatar" class="rounded-circle img-fluid">
+                </div>
+                <div class="";>
+                    <h5><?= $data1['pseudo'];?></h5>
+                    <p><?= $data1['Motivation'];?></p>
+                    <p><?= $data1['intitule'];?></p>
+                    <!-- add ville -->
+                    <p><?//= $data1['descripUser'];?></p>
+                </div>
+                <div class="buttons">
+                    <a href="#" class="btn btn-outline-primary ms-1">Contacter</a>
+                    <a href="profileAutre.php?iduser=<?=$data1['idUser'];?>" class="btn btn-outline-primary ms-1">Voir profil</a>
+                </div>
+            </div>
+            <?php $j++;
+            } ?>
+        </div>
+    </div>
 </body>
 </html>
