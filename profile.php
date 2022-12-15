@@ -205,6 +205,10 @@ include_once __DIR__ . '/View/header_monespace.php';
             </div>
         </form>
     </div>
+    <?php
+    
+    
+    ?>
 </section>
 <?php
 
