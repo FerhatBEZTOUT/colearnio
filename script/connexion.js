@@ -23,6 +23,10 @@ $( document ).ready(function() {
                     $("#error").html("Champs incomplets");
                     $("#error").removeClass("invisible");
                     $("#error").effect("shake");
+                } else if (response=='EMPTY') {
+                    $("#error").html("Champs incomplets");
+                    $("#error").removeClass("invisible");
+                    $("#error").effect("shake");
                 } else {
                     $("#error").html('Email non confirmé. <a href="renvoyer_mail.php?email='+response+'">Renvoyer l\'email de confirmation</a>');
                     $("#error").removeClass("invisible");

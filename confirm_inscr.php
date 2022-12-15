@@ -14,7 +14,7 @@ include_once __DIR__ . '/View/header_index.php';
     </div>
     <h3 class="text-center">Inscription réussie</h3>
     <p class="text-center">Nous vous avons envoyé un email de confirmation. Vous devez confirmer votre compte dans les 15 minutes qui suivent votre inscription afin de pouvoir vous connecter</p>
-    <a class="mt-3 btn btn-primary" href="telechargerFiche.php" target="_blank" rel="noopener noreferrer" >Renvoyer l'email de confirmation</a>
+    
 
 </div>
 

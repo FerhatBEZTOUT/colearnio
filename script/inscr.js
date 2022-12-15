@@ -60,7 +60,7 @@ $(document).ready(function () {
                         $("#error").removeClass("invisible");
                         $("#error").text("Ce pseudo existe déjà");
                     } else if (response=='INSCR_OK') {
-                           location.href = '../profil.php';   // à modifier après (vers confirm_inscr.php)
+                           location.href = '../confirm_inscr.php';   
                     }
                     else {
                         $("#error").addClass("invisible");

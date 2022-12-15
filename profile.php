@@ -108,7 +108,7 @@ include_once __DIR__ . '/View/header_monespace.php';
                                 <p class="mb-0" style="font-weight:bold;">Date de naissance</p>
                             </div>
                             <div class="info col-sm-9">
-                                <input readonly class="ps-2  mb-0" type="date" name="dateNaiss" value="<?= $user->dateNaiss; ?>">
+                                <input readonly class="ps-2 form-control mb-0" type="date" name="dateNaiss" value="<?= $user->dateNaiss; ?>">
                             </div>
                         </div>
 

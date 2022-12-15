@@ -11,8 +11,8 @@ include_once __DIR__.'/View/header_index.php';
     <h2> Membres de l'équipe :</h2>
     <ul>
         <li>Ferhat BEZTOUT</li>
-        <li>METTOUCHI Dassine</li>
-        <li>ABBAS Yasmine</li>
+        <li>Dassine METTOUCHI</li>
+        <li>Yasmine ABBAS</li>
     </ul>
     </div>
     
