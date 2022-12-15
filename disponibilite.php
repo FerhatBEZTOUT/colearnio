@@ -10,11 +10,11 @@ include __DIR__ . '/query/user.php';
 $conn = newConnect();
 //$user = getUserById(3);
 
-$user = getUserById('id');
+$user = getUserById($_SESSION['user']->idUser);
 
 $query = "SELECT niveau,ville FROM utilisateur where  idUser = ?";
 $query = $conn->prepare($query);
-$query->execute();
+$query->execute($_SESSION['user']->idUser);
 //$for = $query->fetch(PDO::FETCH_OBJ);
 //var_dump($for);
 $titre = "Colearnio - Profil";
