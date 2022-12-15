@@ -17,22 +17,10 @@ $query = $conn->prepare($query);
 $query->execute();
 //$for = $query->fetch(PDO::FETCH_OBJ);
 //var_dump($for);
-
+$titre = "Colearnio - Profil";
+include_once __DIR__ . '/View/header_monespace.php';
 ?>
 
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/inscr.css">
-    <title>Document</title>
-</head>
-<body>
 <section>
     <div class="container py-5">
         <h1 class="text-center" style=" margin-right: 10%" ;margi>Ajouter une disponibilité</h1>
@@ -77,28 +65,6 @@ $query->execute();
                                     </select>
                                 </div>
                             </div>
-                            <!--                            <div style="display: flex ;margin-top: 5%">-->
-                            <!--                                <div class="col-sm-3">-->
-                            <!--                                    <p class="mb-0" style="font-weight:bold;margin-top: 15%;margin-right: 40%">-->
-                            <!--                                        Niveau</p>-->
-                            <!--                                </div>-->
-                            <!--                                <div class="col-sm-3">-->
-                            <!--                                    <input style="border: 1px solid black;margin-top: 10%;width: 200%;height: 30px"-->
-                            <!--                                           name="niveau" value="--><!--">-->
-                            <!---->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
-                            <!--                            <div style="display: flex;margin-top: 5%">-->
-                            <!--                                <div class="col-sm-3">-->
-                            <!--                                    <p class="mb-0" style="font-weight:bold;margin-top: 15%;margin-right: 50%" ;>-->
-                            <!--                                        Ville</p>-->
-                            <!--                                </div>-->
-                            <!--                                <div class="col-sm-3">-->
-                            <!--                                    <input style="border: 1px solid black;margin-top: 10%;width: 200%;height: 30px"-->
-                            <!--                                           name="ville" value="--><!--">-->
-                            <!---->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
 
                             <div style="display: flex;margin-top: 5%">
                                 <div class="col-sm-3">
@@ -233,5 +199,6 @@ $query->execute();
     </div>
 </section>
 
-</body>
-</html>
+<?php
+include_once __DIR__ . '/View/footer_index.php';
+?>

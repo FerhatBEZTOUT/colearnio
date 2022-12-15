@@ -69,7 +69,7 @@ include_once __DIR__ . '/View/header_monespace.php';
                                 </button>
                             </div>
 
-                            <input readonly style="width:100%;" class="text-center " type="text" name="description" value="<?= $user->descripUser; ?>">
+                            <input readonly style="width:100%;" placeholder="Description" class="text-center " type="text" name="description" value="<?= $user->descripUser; ?>">
                         </div>
                     </div>
                 </div>

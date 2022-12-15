@@ -44,17 +44,17 @@
             <ul class="navbar-nav me-auto mb-2 mb-sm-0 ">
             
             <li class="nav-item">
-                <a class="nav-link menuNav" href="#">Trouver des partenaires</a>
+                <a class="nav-link menuNav" href="../partenaire.php">Trouver des partenaires</a>
                 
             </li>
 
             <li class="nav-item">
-                <a class="nav-link menuNav" href="#">Ajouter une disponibilité</a>
+                <a class="nav-link menuNav" href="../disponibilite.php">Ajouter une disponibilité</a>
                 
             </li>
 
             <li class="nav-item">
-                <a class="nav-link menuNav" href="#">Messagerie</a>
+                <a class="nav-link menuNav" href="../messagerie.php">Messagerie</a>
                 
             </li>
 
