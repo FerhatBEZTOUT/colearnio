@@ -10,7 +10,8 @@ include __DIR__ . '/query/user.php';
 $conn = newConnect();
 //$user = getUserById(3);
 
-$user = getUserById('id');
+
+$idUser = $_SESSION['user']->idUser;
 
 $query = "SELECT niveau,ville FROM utilisateur where  idUser = ?";
 $query = $conn->prepare($query);
@@ -50,7 +51,7 @@ include_once __DIR__ . '/View/header_monespace.php';
                                 </div>
                                 <div class="col-sm-3">
                                     <input class="ps-2 form-control mb-0" style="background: white;width: 200px;margin-top: 10%; border: 1px solid black"
-                                           id="idUser" name="idUser" value="<?= $user->idUser; ?>">
+                                           id="idUser" name="idUser" value="<?= $idUser->idUser; ?>">
 
                                 </div>
                             </div>
@@ -61,7 +62,7 @@ include_once __DIR__ . '/View/header_monespace.php';
                                 </div>
                                 <div class="col-sm-3">
                                     <input class="ps-2 form-control mb-0" style="background: white;width: 200px;margin-top: 10%; border: 1px solid black"
-                                           id="idVille" name="idVille" value="<?=$user->ville;?>">
+                                           id="idVille" name="idVille" value="<?=$idUser->ville;?>">
 
                                 </div>
                             </div>
@@ -166,7 +167,7 @@ include_once __DIR__ . '/View/header_monespace.php';
 
                         <div class="table-responsive">
                             <?php
-                            $etreDispo  = "SELECT idUser,intitule,dateDeb,dateFin FROM cours,etreDispo where cours.idCours=etreDispo.idCours AND idUser = $user->idUser";
+                            $etreDispo  = "SELECT idUser,intitule,dateDeb,dateFin FROM cours,etreDispo where cours.idCours=etreDispo.idCours AND idUser = $idUser->idUser";
                             $etreDispo = $conn->prepare($etreDispo);
                             $etreDispo->execute();
                             if (isset($_POST['submit'])) {
@@ -237,3 +238,4 @@ include_once __DIR__ . '/View/header_monespace.php';
 <?php
 include_once __DIR__ . '/View/footer_index.php';
 ?>
+
