@@ -29,7 +29,7 @@ redirectFromLanding();
             <img src="img/logo.png" class=" ms-4 logo" alt="logo site">
             <nav>
                 <ul>
-                    <li><a href="connexion.php">Se connecter</a></li>
+                    <li><a href="connexion.php">Connexion</a></li>
                     <li><a href="inscription.php">Inscription</a></li>
                 </ul>
             </nav>

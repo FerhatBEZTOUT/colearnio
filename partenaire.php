@@ -79,10 +79,13 @@
 
     $ville = $conn->prepare("SELECT idVille, nom_ville FROM ville");
     $ville->execute();
+
+    $titre = "Colearnio - Trouver des partenaires";
+include_once __DIR__ . '/View/header_monespace.php';
 ?>
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -92,13 +95,17 @@
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/inscr.css">
-    <script src="script/script.js" defer></script>
+    
     <title>Document</title>
 </head>
-<body>
-
-        <h2 style="text-align:center;">Trouver des partenaires</h2>
-        <div class="container py-5 offset-md-2">
+<body> -->
+<script src="script/script.js" defer></script>
+<div class="row">
+    <div class="col">
+      <h1 aria-label="breadcrumb" class="titre rounded-3 p-3 mb-4">Trouver des partenaies</h1>
+    </div>
+  </div>
+        <div class="container mt-3 offset-md-2">
             <div class="selection row">
                 <div class="col-lg-4">
                     <div class="col-sm-3">
@@ -152,7 +159,7 @@
         <div class="container"> 
             <div class="row">
                 <?php $i = 1; while ($data=$query->fetch()){?>
-                <div class="col-lg-4">
+                <div class="col-lg-4 mt-3">
                     <div class="card partenaire-container">
                         <div class="row partenaire" data-name="<?=$i;?>">
                             <div class="col-sm-8" style="margin: auto;";>
