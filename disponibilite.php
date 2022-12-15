@@ -11,8 +11,7 @@ $conn = newConnect();
 //$user = getUserById(3);
 
 
-$idUser = $_SESSION['user']->idUser;
-$user = getUserById($_SESSION['user']->idUser);
+$user = $_SESSION['user'];
 
 $query = "SELECT niveau,ville FROM utilisateur where  idUser = ?";
 $query = $conn->prepare($query);
@@ -52,7 +51,7 @@ include_once __DIR__ . '/View/header_monespace.php';
                                 </div>
                                 <div class="col-sm-3">
                                     <input class="ps-2 form-control mb-0" style="background: white;width: 200px;margin-top: 10%; border: 1px solid black"
-                                           id="idUser" name="idUser" value="<?= $idUser->idUser; ?>">
+                                           id="idUser" name="idUser" value="<?= $user->idUser; ?>">
 
                                 </div>
                             </div>
