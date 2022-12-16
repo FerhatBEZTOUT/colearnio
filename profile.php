@@ -8,6 +8,7 @@ if (!session_id()) {
 /// ne pas mettre __DIR__ cause des erreurs, il arrive pas à trouver le chemin relatif
 include_once __DIR__ . '/Model/connexionBD.php';
 include __DIR__ . '/query/user.php';
+include __DIR__ . '/query/profile.php';
 
 $conn = newConnect();
 
