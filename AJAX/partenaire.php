@@ -16,7 +16,7 @@
         $query = $conn->prepare('SELECT * FROM etreDispo, utilisateur, formation, cours WHERE etreDispo.idCours = cours.idCours AND etreDispo.idUser = utilisateur.idUser AND formation.idFormation = utilisateur.formation AND etreDispo.idCours = ? AND niveau = ? AND idVille = ?');
         $query->execute(array($_POST["cours"], $_POST["niveau"], $_POST["ville"])); //array($_POST["cours"], $_POST["niveau"], $_POST["ville"])
 ?>
-    <div class="container"> 
+    <div class="container mt-3"> 
             <div class="row">
                 <?php while ($data=$query->fetch()){ 
                     affichPart($data['pseudo'],$data['nomFormation'],$data['Motivation'],$data['idUser']);
@@ -30,7 +30,7 @@
             //$idCours = getCoursByIntiltule($_POST["cours"]);
             $query = $conn->prepare('SELECT * FROM etreDispo, utilisateur, formation, cours WHERE etreDispo.idCours = cours.idCours AND etreDispo.idUser = utilisateur.idUser AND formation.idFormation = utilisateur.formation AND etreDispo.idCours = ? AND niveau = ?');
             $query->execute(array($_POST["cours"], $_POST["niveau"])); ?>
-            <div class="container"> 
+            <div class="container mt-3"> 
                 <div class="row">
                     <?php while ($data=$query->fetch()){ 
                         affichPart($data['pseudo'],$data['nomFormation'],$data['Motivation'],$data['idUser']);
@@ -42,7 +42,7 @@
                 // $idCours = getCoursByIntiltule($_POST["cours"]);
                 $query = $conn->prepare('SELECT * FROM etreDispo, utilisateur, formation, cours WHERE etreDispo.idCours = cours.idCours AND etreDispo.idUser = utilisateur.idUser AND formation.idFormation = utilisateur.formation AND etreDispo.idCours = ?');
                 $query->execute(array($_POST["cours"]));?>
-                <div class="container"> 
+                <div class="container mt-3"> 
                     <div class="row">
                         <?php while ($data=$query->fetch()){ 
                             affichPart($data['pseudo'],$data['nomFormation'],$data['Motivation'],$data['idUser']);

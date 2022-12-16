@@ -1,7 +1,7 @@
 <?php
 function affichPart($pseudo,$formation,$motivation,$user){
     echo "
-        <div class=\"col-lg-4\">
+        <div class=\"col-lg-4 mt-3\">
             <div class=\"card partenaire-container\">
                 <div class=\"row partenaire\">
                     <div class=\"col-sm-8\" style=\"margin: auto;\";>
@@ -12,7 +12,7 @@ function affichPart($pseudo,$formation,$motivation,$user){
                         <p>$formation</p>
                         <p>$motivation</p>
                     </div>
-                    <div class=\"buttons\">
+                    <div class=\"buttons mb-2\">
                         <a href=\"#\" class=\"btn btn-outline-primary ms-1\">Contacter</a>
                         <a href=\"profileAutre.php?iduser=$user\" class=\"btn btn-outline-primary ms-1\">Voir profil</a>
                     </div>

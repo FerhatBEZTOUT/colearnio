@@ -4,7 +4,14 @@ $titre = "Colearnio - Messagerie";
 include_once __DIR__ . '/View/header_monespace.php';
 ?>
 
-<div class="container p-2 my-2 text-center">
+<div class="row">
+    <div class="col">
+        <h1 aria-label="breadcrumb" class="titre rounded-3 p-3 mb-4">Messagerie</h1>
+    </div>
+</div>
+
+<div class="row">
+<div class="container p-2 my-2 col-sm-12 col-lg-6 text-center">
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"></path>
@@ -12,7 +19,74 @@ include_once __DIR__ . '/View/header_monespace.php';
         Nouvelle conversation
     </button>
 </div>
+<div class="col-sm-12 col-lg-6 d-flex justify-content-center align-items-center">
+    <form method="POST" action="" name="myDiscussion" class="d-flex justify-content-center align-items-center">
+        <input class="btn" type="submit" value="Uniquement les discussions créées" name="checkBoxSubmit" id="btn-checkbox">
+        <input <?php if(isset($_POST['checkBoxDisc'])) echo 'checked';?> class="ms-2" type="checkbox" type=submit name="checkBoxDisc" id="checkBoxDisc" style="width:20px; height:20px;">
+    </form>
+</div>
+</div>
 
+
+<div class="container">
+    <table class="table table-responsive table-striped">
+        <thead>
+            <th>Nom</th>
+            <th>Date création</th>
+            <th>Propriétaire</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+        <?php 
+        include_once __DIR__.'/query/chatroom.php';
+        if (isset($_POST['checkBoxDisc'])) {
+          
+            $listRoom = getCreatedRoomsOfUser($_SESSION['user']->idUser);
+             
+            if ($listRoom) {
+                include_once __DIR__.'/View/discussion.php';
+                foreach ($listRoom as $room) {
+                   
+                    $infoRoom = getProperChatRoomUser($room->idUser,$room->idChatRoom);
+                    afficherDiscussion(
+                        $infoRoom->idChatRoom,
+                        $infoRoom->nomCR,
+                        $infoRoom->idUser,
+                        $infoRoom->nom,
+                        $infoRoom->prenom,
+                        $infoRoom->dateCreaCR);
+                }
+            }
+        } else {
+           
+            $listRoom = getChatRoomUser($_SESSION['user']->idUser);
+             
+            if ($listRoom) {
+                include_once __DIR__.'/View/discussion.php';
+                foreach ($listRoom as $room) {
+                   
+                    $infoRoom = getProperChatRoomUser($room->idUser,$room->idChatRoom);
+                    afficherDiscussion(
+                        $infoRoom->idChatRoom,
+                        $infoRoom->nomCR,
+                        $infoRoom->idUser,
+                        $infoRoom->nom,
+                        $infoRoom->prenom,
+                        $infoRoom->dateCreaCR);
+                }
+            }
+        }
+                
+                
+        ?>
+        </tbody>
+    </table>
+</div>
+<!-- Liste des conversations -->
+
+
+
+<!-- Modal (fenêtre pop-up) pour la création d'une conversation -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

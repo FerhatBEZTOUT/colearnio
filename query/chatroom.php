@@ -15,12 +15,16 @@
 
 
 
-    function getProperChatRoomUser($idUser){
+    function getProperChatRoomUser($idUser,$idChatRoom){
 
         try {
             $conn = newConnect();
-            $query = $conn->prepare("SELECT * FROM chatRoom WHERE idUser=?");
-            $query->execute(array($idUser));
+            $query = $conn->prepare("SELECT * 
+            FROM chatRoom C 
+            JOIN utilisateur U
+            ON U.idUser=C.idUser 
+            WHERE C.idUser=? AND idChatRoom=?");
+            $query->execute(array($idUser,$idChatRoom));
             $resultat = $query->fetch(PDO::FETCH_OBJ); 
             
             return $resultat;
@@ -34,11 +38,27 @@
     function getChatRoomUser($idUser){
         try {
             $conn = newConnect();
-            $query = $conn->prepare("SELECT C.* FROM chatRoomUsers CU JOIN 
+            $query = $conn->prepare("SELECT C.* FROM ChatRoomUsers CU JOIN 
             chatRoom C ON C.idChatRoom=CU.idChatRoom
-            WHERE idUser=?");
+            WHERE CU.idUser=?");
             $query->execute(array($idUser));
-            $resultat = $query->fetch(PDO::FETCH_OBJ); 
+            $resultat = $query->fetchAll(PDO::FETCH_OBJ); 
+            
+            return $resultat;
+            
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
+
+    function getCreatedRoomsOfUser($idUser){
+        try {
+            $conn = newConnect();
+            $query = $conn->prepare("SELECT * FROM chatRoom WHERE idUser=?");
+            $query->execute(array($idUser));
+            $resultat = $query->fetchAll(PDO::FETCH_OBJ); 
             
             return $resultat;
             

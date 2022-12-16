@@ -18,6 +18,14 @@ $(document).ready(function () {
     })
 
 
+$("#checkBoxDisc").change(function (e) { 
+    $("btn-checkbox").click();
+});
+
+
+
+
+
 
 $("#btnCreateRoom").click(function (e) { 
     e.preventDefault();
