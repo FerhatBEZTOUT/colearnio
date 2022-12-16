@@ -13,7 +13,7 @@ $( document ).ready(function() {
                     window.location.href = '../dashboard.php';
                 }
                 else if (response=='user') {
-                    window.location.href = '../profile.php';  // à modifier "partenaire.php"
+                    window.location.href = '../partenaire.php';  // à modifier "partenaire.php"
                 } else if (response=='NOT FOUND') {
                     $("#error").html("Email ou mot de passe incorrect");
                     $("#error").removeClass("invisible");

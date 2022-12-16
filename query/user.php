@@ -151,3 +151,37 @@ function getVilles() {
         echo $e->getMessage();
     }
 }
+
+
+
+
+function getVilleOfUser($idUser) {
+    try {
+        $conn = newConnect();
+        $query = $conn->prepare("SELECT nom_ville FROM ville V 
+        JOIN utilisateur U ON U.ville=V.idVille WHERE idUser=?");
+        $query->execute(array($idUser));
+        $resultat = $query->fetch(PDO::FETCH_OBJ); 
+        
+        return $resultat;
+        
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+
+}
+
+
+
+function addPicture($img,$iduser) {
+    try {
+        $conn = newConnect();
+        $query = $conn->prepare("UPDATE utilisateur set photo=? WHERE idUser=?");
+        $result = $query->execute(array($img,$iduser));
+        
+        return $result;
+        
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}

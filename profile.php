@@ -77,7 +77,8 @@ include_once __DIR__ . '/View/header_monespace.php';
                                     Editer le profil
                                 </button>
                             </div>
-
+                            <label class="invisible" id="labelImage" for="inputImage">Ajouter un avatar</label>
+                            <input class="form-control invisible" type="file" name="photo" readonly id="inputImage">
                             <input readonly style="width:100%;" placeholder="Description" class="text-center " type="text" name="description" value="<?= $user->descripUser; ?>">
                         </div>
                     </div>

@@ -73,7 +73,7 @@ if (!$error) {
                                 <p class="mb-0" style="font-weight:bold;";>Nom</p>
                             </div>
                             <div class="info col-sm-9">
-                                <p class="text-muted mb-0"><?=$ProfilUser->nom;?></p>
+                                <?=$ProfilUser->nom;?></p>
                             </div>
                         </div>
 
@@ -82,7 +82,7 @@ if (!$error) {
                                 <p class="mb-0" style="font-weight:bold;";>Prenom</p>
                             </div>
                             <div class="info col-sm-9">
-                                <p class="text-muted mb-0"><?=$ProfilUser->prenom;?></p>
+                                <?=$ProfilUser->prenom;?></p>
                             </div>
                         </div>
 
@@ -91,7 +91,7 @@ if (!$error) {
                                 <p class="mb-0" style="font-weight:bold;">Email</p>
                             </div>
                             <div class="info col-sm-9">
-                                <p class="text-muted mb-0"><?=$ProfilUser->email;?></p>
+                                <?=$ProfilUser->email;?></p>
                             </div>
                         </div>
                         <?php if($ProfilUser->dateNaiss != NULL){?>
@@ -100,7 +100,7 @@ if (!$error) {
                                     <p class="mb-0" style="font-weight:bold;">Date de naissance</p>
                                 </div>
                                 <div class="info col-sm-9">
-                                    <p class="text-muted mb-0"><?=$ProfilUser->dateNaiss;?></p>
+                                    <?=$ProfilUser->dateNaiss;?></p>
                                 </div>
                             </div>
                         <?php } ?>
@@ -111,7 +111,7 @@ if (!$error) {
                                     <p class="mb-0" style="font-weight:bold;">Telephone</p>
                                 </div>
                                 <div class="info col-sm-9">
-                                    <p class="text-muted mb-0"><?=$ProfilUser->telephone;?></p>
+                                    <?=$ProfilUser->telephone;?></p>
                                 </div>
                             </div>
                         <?php } ?>
@@ -122,7 +122,7 @@ if (!$error) {
                                     <p class="mb-0" style="font-weight:bold;">Ville</p>
                                 </div>
                                 <div class="info col-sm-9">
-                                    <p class="text-muted mb-0"><?=$ProfilUser->ville;?></p>
+                                    <?php  $r = getVilleOfUser($ProfilUser->ville); if($r) echo $r->nom_ville; ?></p>
                                 </div>
                             </div>
                         <?php } ?>
@@ -133,7 +133,7 @@ if (!$error) {
                                     <p class="mb-0" style="font-weight:bold;">Rue</p>
                                 </div>
                                 <div class="info col-sm-9">
-                                    <p class="text-muted mb-0"><?=$ProfilUser->rue;?></p>
+                                    <?=$ProfilUser->rue;?></p>
                                 </div>
                             </div>
                         <?php } ?>
@@ -144,7 +144,7 @@ if (!$error) {
                                     <p class="mb-0" style="font-weight:bold;">Code Postal</p>
                                 </div>
                                 <div class="info col-sm-9">
-                                    <p class="text-muted mb-0"><?=$ProfilUser->codePost;?></p>
+                                    <?=$ProfilUser->codePost;?></p>
                                 </div>
                             </div>
                         <?php } ?>
@@ -159,7 +159,15 @@ if (!$error) {
                                     <p class="mb-0" style="font-weight:bold;">Niveau</p>
                                 </div>
                                 <div class="info col-sm-9">
-                                    <p class="text-muted mb-0"><?=$ProfilUser->niveau;?></p>
+                
+                                    
+                                     <?php if (!$ProfilUser->niveau) echo ' Aucun</p>'; ?>
+                                     <?php if ($ProfilUser->niveau==1) echo '  Baccalauréat</p> '; ?>
+                                     <?php if ($ProfilUser->niveau==2) echo '  Licence 1</p> '; ?>
+                                     <?php if ($ProfilUser->niveau==3) echo '  Licence 2</p> '; ?>
+                                     <?php if ($ProfilUser->niveau==4) echo '  Licence 3</p> '; ?>
+                                     <?php if ($ProfilUser->niveau==5) echo '  Master 1</p> '; ?>
+                                     <?php if ($ProfilUser->niveau==6) echo '  Master 2</p> '; ?>                               
                                 </div>
                             </div>
                         <?php } ?>
@@ -168,7 +176,7 @@ if (!$error) {
                                 <p class="mb-0" style="font-weight:bold;">Specialite</p>
                             </div>
                             <div class="info col-sm-9">
-                                <p class="text-muted mb-0"><?=$formation->nomFormation;?></p>
+                                <?=$formation->nomFormation;?></p>
                             </div>
                         </div>
                     </div>
@@ -192,7 +200,7 @@ if (!$error) {
 ?>
 
 <script>
-    /*   function getLocation() {
+       function getLocation() {
            return new Promise(function(resolve, reject) {
                if (navigator.geolocation) {
                    navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -233,7 +241,7 @@ if (!$error) {
 
            var marker= L.marker([center.lat, center.lng]).addTo(map);
            var markerclient = L.marker([ <?=$localisation->lat;?>, <?=$localisation->lng;?> ]).addTo(map);
-        })*/
+        })
 
 
     var map = L.map('map').setView([<?=$localisation->lat;?>, <?=$localisation->lng;?>], 12);
@@ -244,7 +252,7 @@ if (!$error) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    //var markerclient = L.marker([ <?//=$localisation->lat;?>//, <?//=$localisation->lng;?>// ]).addTo(map);  si on veut afficher le marker du client et non pas un rond
+    var markerclient = L.marker([ <?=$localisation->lat;?>, <?=$localisation->lng;?> ]).addTo(map); // si on veut afficher le marker du client et non pas un rond
 
     var circle = L.circle([<?=$localisation->lat;?>, <?=$localisation->lng;?>], {
         color: 'red',

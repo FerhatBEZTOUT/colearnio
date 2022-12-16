@@ -5,14 +5,14 @@ include_once __DIR__ . '/View/header_monespace.php';
 
 
 include_once __DIR__ . '/query/chat.php';
-if (isset($_GET['room'])) {
-    $idroom = htmlentities($_GET['room']);
-    var_dump(isUserInRoom($_SESSION['user']->idUser, $idroom));
-    if (isUserInRoom($_SESSION['user']->idUser, $idroom)) {
+// if (isset($_GET['room'])) {
+//     $idroom = htmlentities($_GET['room']);
+//     var_dump(isUserInRoom($_SESSION['user']->idUser, $idroom));
+//     if (isUserInRoom($_SESSION['user']->idUser, $idroom)) {
 
-        header("location:messagerie.php");
-    }
-}
+//         header("location:messagerie.php");
+//     }
+// }
 
 
 ?>
@@ -25,7 +25,7 @@ if (isset($_GET['room'])) {
 </style>
 <div class="container mt-3 border border-secondary " style="height: 100%;">
     <div class="row p-3">
-        <div class="row col-sm-0 d-none d-lg-block col-lg-4 border border-primary me-3">
+        <div class="row col-sm-0 d-none d-lg-block col-lg-4 border border-secondary me-3">
             <ul class="list-unstyled mt-2">
                 <?php
 
