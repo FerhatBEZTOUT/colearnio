@@ -173,7 +173,7 @@ include_once __DIR__ . '/View/header_monespace.php';
 
 
                                 <div class="text-center">
-                                    <input class="btn btn-primary" type="submit" name="submit" value="Ajouter" onclick="updateTable()>
+                                    <input class="btn btn-primary" type="submit" name="submit" value="Ajouter" onclick="updateTable()">
                                 </div>
 
 
