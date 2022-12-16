@@ -47,7 +47,16 @@ $titre = "Colearnio - Profil";
 include_once __DIR__ . '/View/header_monespace.php';
 
 ?>
-
+<style>
+    .info, .card input{
+        
+        padding:1px;
+        margin-bottom: 4px;
+        width: 300px;
+        border-radius: 10px;
+        color: black;
+    }
+</style>
 <section>
 
     <div class="container py-5">

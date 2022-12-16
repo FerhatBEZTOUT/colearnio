@@ -157,6 +157,9 @@ include_once __DIR__ . '/View/header_monespace.php';
                             </div>
 
 
+
+                            
+
                                 <!-- ---------------------- check box "En duo" ---------------------- -->
                             <div class="row mb-2">
                             <div class="col-sm-12 col-lg-4">

@@ -6,25 +6,40 @@
     include_once __DIR__.'/Model/connexionBD.php';  
     include __DIR__.'/query/user.php';
     include __DIR__.'/query/profileAutre.php';
+    
 
     $conn = newConnect(); 
     $ProfilUser = getUserById($_GET['iduser']);
     $formation = getFormationByUserId($_GET['iduser']);
+
+    if (isset($_GET['iduser'])) {
+        $foreignUser = getUserById($_GET['iduser']);
+        if ($foreignUser) $error=false; else $error=true;
+
+
+    }
+
+    if (!$error)
+        $titre = 'Colearnio - '.$foreignUser->nom.' '.$foreignUser->prenom;
+    else {
+        $titre = 'Colearnio - Profil introuvable';
+    }
+
+    include_once __DIR__ . '/View/header_monespace.php';
+    if (!$error) {
+        
 ?>
 
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/inscr.css">
-    <link rel="shortcut icon" href="/img/logo.ico" type="image/x-icon">
-    <title>Document</title>
-</head>
-<body>
+<style>
+    .info, .card input{
+        
+        padding:1px;
+        margin-bottom: 4px;
+        width: 300px;
+        border-radius: 10px;
+        color: black;
+    }
+</style>
     <section>
         <div class="container py-5">
             <div class="row">
@@ -154,6 +169,25 @@
             </div>
         </div>
     </section>
-    
-</body>
-</html>
+    <?php 
+    } else {
+        ?>
+
+     <?php  
+     
+     echo '<div class="alert alert-danger d-flex align-items-center" role="alert">
+     <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+     <div>
+      Vous tenter de visualiser un profil inexistant
+     </div>
+   </div>';
+    }
+?>
+
+
+
+<?php
+
+include_once __DIR__.'/View/footer_index.php';
+
+?>
