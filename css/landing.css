@@ -13,8 +13,16 @@ body {
 .logo{
     width: 50px;
     cursor: pointer;
-    
+    margin-left: 10px;
 }
+
+@media screen  and (max-width: 770px){
+    .logo{
+        margin-left: 10px;
+
+    }
+}
+
 nav{
     flex: 1;
     text-align: right;
@@ -38,10 +46,10 @@ nav ul li a{
 
 /* centre*/
 #accueil{
-    background: linear-gradient(rgba(0,0,0,0.5),#6E85B2),url(photo/etudiants.jpg);
+    background: linear-gradient(rgba(0,0,0,0.5),#6E85B2),url(../photo/etudiants.jpg);
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: 80vh;
 }
 
 .text{
@@ -54,10 +62,13 @@ nav ul li a{
     font-size: 40px;
     font-family: Calibri, 'Trebuchet MS', sans-serif;
     top: 100px;
+    /*margin: 30px;*/
 }
 .btn{
     margin: 70px auto 0;
+
 }
+
 .btn a{
     width: 150px;
     text-decoration: none;
@@ -90,7 +101,12 @@ nav ul li a{
 /* pour la version mobil on utilise @media*/
 @media screen  and (max-width: 770px){
     .text h1{
-        font-size: 44px;
+        font-size: 35px;
+        margin: -30px;
+    }
+    #accueil{
+        height: 80vh;
+
     }
     .btn a{
         display: block;
