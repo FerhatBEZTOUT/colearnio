@@ -8,6 +8,7 @@ if (!session_id()) {
 /// ne pas mettre __DIR__ cause des erreurs, il arrive pas à trouver le chemin relatif
 include_once __DIR__ . '/Model/connexionBD.php';
 include __DIR__ . '/query/user.php';
+include __DIR__ . '/query/profile.php';
 
 $conn = newConnect();
 
@@ -18,28 +19,12 @@ $idFormation = $_SESSION['user']->formation;
 
 if (isset($_POST['submit'])) {
     // echo "yes";
-    $modifUser = $conn->prepare('UPDATE utilisateur set 
-    nom="' . $_POST['nom'] . '", 
-    prenom="' . $_POST['prenom'] . '", 
-    descripUser="' . $_POST['description'] . '", 
-    rue="' . $_POST['rue'] . '", 
-    codePost="' . $_POST['codePost'] . '", 
-    ville="' . $_POST['ville'] . '", 
-    telephone="' . $_POST['tel'] . '", 
-    dateNaiss="' . $_POST['dateNaiss'] . '",
-    niveau="' . $_POST['niveau'] . '" 
-    WHERE idUser=?');
-    $modifUser->execute(array($idUser));
-    $modifUser = $modifUser->fetch(PDO::FETCH_OBJ);
-
-    
+    $modifUser = updateUser($_POST['nom'],$_POST['prenom'],$_POST['description'],$_POST['rue'],$_POST['codePost'],$_POST['ville'],$_POST['tel'],$_POST['dateNaiss'],$_POST['niveau'],$idUser);
 }
 
 $user = getUserById($idUser);
 $_SESSION['user'] = $user;
-$query = $conn->prepare('SELECT nomFormation FROM formation, utilisateur WHERE formation.idFormation = utilisateur.formation AND idUser=?');
-$query->execute(array($idUser));
-$formation = $query->fetch(PDO::FETCH_OBJ);
+$formation = getFormationByUserId($idUser);
 
 
 
