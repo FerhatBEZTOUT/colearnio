@@ -5,7 +5,7 @@ if(!session_id()){
 
 include_once __DIR__.'/Model/connexionBD.php';
 include __DIR__.'/query/user.php';
-include __DIR__.'/query/profileAutre.php';
+include __DIR__.'/query/profile.php';
 
 
 $conn = newConnect();
