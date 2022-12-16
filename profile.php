@@ -2,7 +2,7 @@
 if (!session_id()) {
     session_start();
 }
-//traiter date de naissance et image
+//note pour plus tard : traiter date de naissance et image
 
 // __DIR__ c'est pour le site Alwaysdata , 
 /// ne pas mettre __DIR__ cause des erreurs, il arrive pas à trouver le chemin relatif
@@ -12,13 +12,13 @@ include __DIR__ . '/query/profile.php';
 
 $conn = newConnect();
 
-//var_dump($user);
+
 $idUser = $_SESSION['user']->idUser;
 $idFormation = $_SESSION['user']->formation;
 
 
 if (isset($_POST['submit'])) {
-    // echo "yes";
+    
     $modifUser = updateUser($_POST['nom'],$_POST['prenom'],$_POST['description'],$_POST['rue'],$_POST['codePost'],$_POST['ville'],$_POST['tel'],$_POST['dateNaiss'],$_POST['niveau'],$idUser);
 }
 
@@ -42,6 +42,12 @@ include_once __DIR__ . '/View/header_monespace.php';
         color: black;
     }
 </style>
+
+<div class="row">
+                <div class="col">
+                    <h1 aria-label="breadcrumb" class="titre rounded-3 p-3 mb-4">Mon profil</h1>
+                </div>
+            </div>
 <section>
 
     <div class="container py-5">
@@ -121,7 +127,7 @@ include_once __DIR__ . '/View/header_monespace.php';
                                 <p class="mb-0" style="font-weight:bold;">Ville</p>
                             </div>
                             <div class="info col-sm-9">
-                                <select class="form-select" name="ville" id="ville">
+                                <select disabled class="form-select" name="ville" id="ville">
                                     <option value="0" <?php if (!$_SESSION['user']->ville) echo ' selected '; ?>>Sélectionner une ville</option>
                                     <?php
                                     $villes = getVilles();
@@ -169,8 +175,8 @@ include_once __DIR__ . '/View/header_monespace.php';
                                 <p class="mb-0" style="font-weight:bold;">Niveau</p>
                             </div>
                             <div class="info col-sm-9">
-                                <select class="form-control" name="niveau" id="niveau">
-                                    <option value="0" <?php if (!$user->niveau) echo ' selected '; ?>>Sélectionner une ville</option>
+                                <select disabled class="form-control" name="niveau" id="niveau">
+                                    <option value="0" <?php if (!$user->niveau) echo ' selected '; ?>>Sélectionner un niveau</option>
                                     <option value="1" <?php if ($user->niveau==1) echo ' selected '; ?>>Baccalauréat</option>
                                     <option value="2" <?php if ($user->niveau==2) echo ' selected '; ?>>Licence 1</option>
                                     <option value="3" <?php if ($user->niveau==3) echo ' selected '; ?>>Licence 2</option>

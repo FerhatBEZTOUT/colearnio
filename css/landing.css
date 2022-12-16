@@ -5,7 +5,7 @@ body {
 	
 }
 /*nav*/
-.navbar{
+/* .navbar{
     height: 12%;
     display: flex;
     align-items: center;
@@ -42,7 +42,7 @@ nav ul li a{
     text-decoration: none;
     font-size: 13px;
     color: #fff;
-}
+} */
 
 /* centre*/
 #accueil{
@@ -370,13 +370,13 @@ margin-bottom: 20px;
 } */
 
 
-.navbar-nav>a {
+/* .navbar-nav>a {
     font-weight: bold;
 
 }
 .navbar-nav>a:hover {
     color: rgb(17, 121, 218);
-}
+} */
 
 p {
     font-size: large;

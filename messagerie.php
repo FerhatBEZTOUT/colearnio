@@ -21,14 +21,17 @@ include_once __DIR__ . '/View/header_monespace.php';
 </div>
 <div class="col-sm-12 col-lg-6 d-flex justify-content-center align-items-center">
     <form method="POST" action="" name="myDiscussion" class="d-flex justify-content-center align-items-center">
-        <input class="btn" type="submit" value="Uniquement les discussions créées" name="checkBoxSubmit" id="btn-checkbox">
-        <input <?php if(isset($_POST['checkBoxDisc'])) echo 'checked';?> class="ms-2" type="checkbox" type=submit name="checkBoxDisc" id="checkBoxDisc" style="width:20px; height:20px;">
+    <input <?php if(isset($_POST['checkBoxDisc'])) echo 'checked';?> class="ms-2" type="checkbox" type=submit name="checkBoxDisc" id="checkBoxDisc" style="width:20px; height:20px;">
+    <label class="me-2" for="checkBoxDisc">Uniquement celles créées</label>
+        <input class="btn btn-primary" type="submit" value="Voir" name="checkBoxSubmit" id="btn-checkbox">
+        
     </form>
 </div>
 </div>
 
 
 <div class="container">
+    <h4 class="text-secondary text-center">Vos conversations</h4>
     <table class="table table-responsive table-striped">
         <thead>
             <th>Nom</th>

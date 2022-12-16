@@ -8,8 +8,9 @@ if(!session_id()) {
 include_once __DIR__."/Controller/redirect.php";
 redirectFromLanding();
 
-?>
+$titre = "Colearnio - Apprendre ensemble";
 
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -17,20 +18,42 @@ redirectFromLanding();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/landing.css">
-    <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <title>Colearnio, apprendre ensemble</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/inscr.css">
+    <link rel="stylesheet" href="../css/landing.css">
+    <link rel="shortcut icon" href="../img/logo.ico" type="image/x-icon">
+   
+    <title><?= $titre?></title>
 </head>
 
-<body>
+<body class="vh-100" style="display:flex;
+    min-height:100vh;
+    flex-direction: column;">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light nav">
+        <a class="navbar-brand d-flex mx-auto justify-content-center logo" href="../"><img src="../img/logo.png" alt="Logo" style="width: 80%;"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse px-4" id="navbarNavAltMarkup">
+            <div class="navbar-nav ">
+                <a class="nav-item nav-link" href="../connexion.php">Connexion</a>
+                <a class="nav-item nav-link" href="../inscription.php">Inscription</a>
+                
+                <a class="nav-item nav-link" href="../about-us.php">Qui sommes nous</a>
+                
+            </div>
+        </div>
+    </nav>
+<!-- Fin Header -->
 
 <section id="accueil" style="background: linear-gradient(rgba(0,0,0,0.5),#6E85B2),url(/photo/etudiants.jpg);">
-    <div class="navbar">
-        <img src="img/logo.png" class=" ms-4 logo" alt="logo site">
-
-    </div>
+    
     <div class="text">
         <h1> COLEARNIO, APPRENDRE ENSEMBLE.</h1>
         <div class="btn">
