@@ -15,151 +15,181 @@ $user = $_SESSION['user'];
 
 $query = "SELECT niveau,ville FROM utilisateur where  idUser = ?";
 $query = $conn->prepare($query);
-$query->execute($_SESSION['user']->idUser);
+$query->execute(array($_SESSION['user']->idUser));
 //$for = $query->fetch(PDO::FETCH_OBJ);
 //var_dump($for);
 $titre = "Colearnio - Profil";
 include_once __DIR__ . '/View/header_monespace.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="css/inscr.css">
-    <title>Document</title>
-</head>
-<body>
 <section>
     <div class="container py-5">
-        <h1 class="text-center" style=" margin-right: 10%" >Ajouter une disponibilité</h1>
+
+        <div class="row">
+            <div class="col">
+                <h1 aria-label="breadcrumb" class="titre rounded-3 p-3 mb-4">Ajouter une disponibilité</h1>
+            </div>
+        </div>
+
         <form method="POST" action="">
-            <div style="margin-top: 5%" class="row">
+            <div class="row container">
                 <div class="col-lg-4">
                     <div class="card mb-4">
-                        <div  class="card-body text-center">
+                        <div class="card-body">
 
-                            <div style="display: flex;margin-top: 5%">
-                                <div class="col-sm-3">
-                                    <p class="mb-0" style="font-weight:bold;margin: 15px" >
-                                        User</p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <input class="ps-2 form-control mb-0" style="background: white;width: 200px;margin-top: 10%; border: 1px solid black"
-                                           id="idUser" name="idUser" value="<?= $user->idUser; ?>">
 
-                                </div>
-                            </div>
-                            <div style="display: flex;margin-top: 5%">
-                                <div class="col-sm-3">
-                                    <p class="mb-0" style="font-weight:bold;margin: 15px" >
-                                        Ville</p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <input class="ps-2 form-control mb-0" style="background: white;width: 200px;margin-top: 10%; border: 1px solid black"
-                                           id="idVille" name="idVille" value="<?=$idUser->ville;?>">
 
+
+
+
+                                    <!-- ---------------------- Ville ------------------ -->
+                            <div class="row mb-2">
+                                <div class="col-sm-12 col-lg-4">
+                                    <label for="idVille">Ville</label>
                                 </div>
-                            </div>
-                            <div style="display: flex;margin-top: 5%">
-                                <div class="col-sm-3">
-                                    <p class="mb-0" style="font-weight:bold;margin: 15px">
-                                        Cours</p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <select style="border: 1px solid black;margin-top: 10%;margin-top: 10%;width: 200%;height: 30px"
-                                            class="form-select"
-                                            name="idCours">
-                                        <option selected>
-                                            <?php
-                                            $sql = "SELECT * FROM cours";
-                                            $result = $conn->query($sql);
-                                            if ($result->rowCount() > 0) {
-                                                while ($row = $result->fetch()) {
-                                                    echo "<option value='" . $row['idCours'] . "'>" . $row['intitule'] . "</option>";
-                                                }
+                                <div class="col-sm-12 col-lg-8">
+                                    <select class="form-select" name="idVille" id="idVille">
+                                        <option value="0" <?php if (!$_SESSION['user']->ville) echo ' selected '; ?>>Sélectionner une ville</option>
+                                        <?php
+                                        $villes = getVilles();
+
+                                        if ($villes) {
+                                            foreach ($villes as $ville) {
+                                                echo '<option value="' . $ville->idVille . '"';
+                                                if ($ville->idVille == $_SESSION['user']->ville) echo ' selected';
+                                                echo '>' . $ville->nom_ville . '</option>';
                                             }
-                                            ?>
-                                        </option>
+                                        }
+                                        ?>
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+                                <!-- ---------------------- Cours ------------------ -->
+                            <div class="row mb-2">
+                                <div class="col-sm-12 col-lg-4">
+                                    <label for="idCours">Cours</label>
+                                </div>
+                                <div class="col-sm-12 col-lg-8">
+                                    
+                                    <select class="form-select" name="idCours" id="idCours">
+                                        <option selected value="0">Selectionner un cours</option>
+                                        <?php
+                                        $sql = "SELECT * FROM cours";
+                                        $result = $conn->query($sql);
+                                        if ($result->rowCount() > 0) {
+                                            while ($row = $result->fetch()) {
+                                                echo "<option value='" . $row['idCours'] . "'>" . $row['intitule'] . "</option>";
+                                            }
+                                        }
+                                        ?>
+
 
                                     </select>
                                 </div>
-
                             </div>
 
+                            
 
-                            <div style="display: flex;margin-top: 5%">
-                                <div class="col-sm-3">
-                                    <p class="mb-0" style="font-weight:bold;margin-top: 10px">
-                                        Motivation</p>
+
+                                <!-- ---------------------- Motivation ------------------ -->
+                            <div class="row mb-2">
+                                <div class="col-sm-12 col-lg-4">
+                                    <label for="motivation">Motivation</label>
                                 </div>
-                                <div class="col-sm-3">
-                                    <input style="background: white;width: 200px;margin-top: 10%; border: 1px solid black"
-                                           class="inp" name="motivation">
-                                </div>
-                            </div>
-                            <div style="display: flex;margin-top: 5%">
-                                <div class="col-sm-3">
-                                    <p class="mb-0" style="font-weight:bold;margin-top: 10%">
-                                        Datedebut</p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <input type="date"
-                                           style="background: white;width: 200px;margin-top: 10%; border: 1px solid black"
-                                           class="inp" name="dateDeb">
+                                <div class="col-sm-12 col-lg-8">
+                                        <textarea class="form-control" name="motivation" id="motivation" cols="auto " rows="2"></textarea>
                                 </div>
                             </div>
-                            <div style="display: flex;margin-top: 5%">
-                                <div class="col-sm-3">
-                                    <p class="mb-0" style="font-weight:bold;margin: 15px">
-                                        dateFin</p>
+
+
+
+
+                               <!-- ---------------------- Date début ---------------------- -->
+                            <div class="row mb-2">
+                                <div class="col-sm-12 col-lg-4">
+                                <label for="DateDeb">Date début</label>
                                 </div>
-                                <div class="col-sm-3">
-                                    <input type="date"
-                                           style="background: white;width: 200px;margin-top: 10%; border: 1px solid black"
-                                           name="dateFin">
+                                <div class="col-sm-12 col-lg-8">
+                                    <input class="form-control" type="date" id="dateDeb" name="dateDeb">
                                 </div>
                             </div>
-                            <div style="display: flex;margin-top: 5%">
-                                <div class="col-sm-3">
-                                    <p class="mb-0" style="font-weight:bold;margin-top: 15%;margin-right: 5%" >
-                                        typeDispon</p>
+
+
+
+
+
+                                <!-- ---------------------- Date Fin ---------------------- -->
+                            <div class="row mb-2">
+                                <div class="col-sm-12 col-lg-4">
+                                <label for="dateFin">Date fin</label> 
                                 </div>
-                                <div class="col-sm-3">
-                                    <select style="border: 1px solid black;margin-top: 10%;width: 200%;height: 30px"
-                                            class="form-select"
-                                            name="typeDispo">
-                                        <option></option>
-                                        <option>Presentiel</option>
-                                        <option>Distanciel</option>
-                                        <option>les deux</option>
+                                <div class="col-sm-12 col-lg-8">
+                                    <input class="form-control" type="date" id="dateFin" name="dateFin">
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                              <!-- ---------------------- Type dispo ---------------------- -->
+                            <div class="row mb-2">
+                                <div class="col-sm-12 col-lg-4">
+                                <label for="typeDispo">Type disponibilité</label> 
+                                </div>
+                                <div class="col-sm-12 col-lg-8">
+                                    <select  class="form-select" name="typeDispo" id="typeDispo">
+                                        <option selected value="null">Selectionner un type</option>
+                                        <option value="presentiel">Presentiel</option>
+                                        <option value="distanciel">Distanciel</option>
+                                        <option value="both">Les deux</option>
                                     </select>
                                 </div>
                             </div>
-                            <div style="display: flex;margin-top: 5%">
-                                <div class="col-sm-3">
-                                    <p class="mb-0" style="font-weight:bold;margin: 15px">
-                                        enDuo </p>
+
+
+                                <!-- ---------------------- check box "En duo" ---------------------- -->
+                            <div class="row mb-2">
+                            <div class="col-sm-12 col-lg-4">
+                                <label for="duo">Duo</label> 
                                 </div>
-                                <div class="col-sm-3">
-                                    <input style="background: white;width: 200px;margin-top: 10%; border: 1px solid black"
-                                           class="inp" name="enDuo">
+                                <div class="col-sm-12 col-lg-8">
+                                    <input type="checkbox" id="duo" name="enDuo" style="width: 20px; height: 20px;" value="0">
                                 </div>
                             </div>
 
-                            <div class="Valider">
-                                <input style="background: #6E85B2;margin-top: 10%;width: 150px;border: 1px solid black"
-                                       type="submit" name="submit" value="Ajouter"></div>
+
+
+
+
+                            <div class="text-center">
+                                <input class="btn btn-primary" type="submit" name="submit" value="Ajouter">
+                            </div>
+
+                           
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
                 <div class="col-lg-8">
-                    <div  class="card mb-4">
+                    <div class="card mb-4">
                         <div class="barre"></div>
                         <br>
                         <!--TABLEAU-->
@@ -167,19 +197,24 @@ include_once __DIR__ . '/View/header_monespace.php';
 
                         <div class="table-responsive">
                             <?php
-                            $etreDispo  = "SELECT idUser,intitule,dateDeb,dateFin FROM cours,etreDispo where cours.idCours=etreDispo.idCours AND idUser = $idUser->idUser";
+                            $etreDispo  = "SELECT idUser,intitule,dateDeb,dateFin FROM cours,etreDispo where cours.idCours=etreDispo.idCours AND idUser = $user->idUser";
                             $etreDispo = $conn->prepare($etreDispo);
                             $etreDispo->execute();
                             if (isset($_POST['submit'])) {
-                                $user = $_POST['idUser'];
+                                $user = $user->idUser;
                                 $cours = $_POST['idCours'];
                                 $idVille = $_POST['idVille'];
-//                                $niveau = $_POST['niveau'];
+                                //                                $niveau = $_POST['niveau'];
                                 $Motivation = $_POST['motivation'];
                                 $dateDeb = $_POST['dateDeb'];
                                 $dateFin = $_POST['dateFin'];
                                 $typeDispo = $_POST['typeDispo'];
-                                $enDuo = $_POST['enDuo'];
+                                if (!isset($_POST['enDuo'])) {
+                                    $enDuo = false;
+                                } else {
+                                    $enDuo = $_POST['enDuo'];
+                                }
+                                
 
 
                                 $sql = $conn->prepare("INSERT INTO etreDispo (idUser,idCours,idVille,dateDeb,dateFin ,typeDispo,enDuo,Motivation) VALUES (:user,:cours,:idVille,:dateDeb,:dateFin,:typeDispo,:enDuo,:motivation)");
@@ -192,34 +227,36 @@ include_once __DIR__ . '/View/header_monespace.php';
                                 $sql->bindParam(':typeDispo', $typeDispo);
                                 $sql->bindParam(':enDuo', $enDuo);
                                 $sql->execute();
-
-
                             }
                             ?>
                             <table class="table table-striped table-hover">
                                 <thead>
-                                <tr>
-                                    <th>idUser</th>
-                                    <th>Cours</th>
-                                    <th>dateDeb</th>
-                                    <th>dateFin</th>
+                                    <tr>
 
-                                </tr>
+                                        <th>Cours</th>
+                                        <th>Date début</th>
+                                        <th>Date fin</th>
+                                        <!-- <th>Action</th> -->
+
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <?php
+                                    <?php
 
-                                while ($row = $etreDispo->fetch() ) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row['idUser'] . "</td>";
-                                    echo "<td>" . $row['intitule'] . "</td>";
-                                    echo "<td>" . $row['dateDeb'] . "</td>";
-                                    echo "<td>" . $row['dateFin'] . "</td>";
-                                    echo "</tr>";
+                                    while ($row = $etreDispo->fetch()) {
+                                        echo "<tr>";
+                                        echo "<td>" . $row['intitule'] . "</td>";
+                                        echo "<td>" . $row['dateDeb'] . "</td>";
+                                        echo "<td>" . $row['dateFin'] . "</td>";
 
-                                }
+                                        //     echo '<td>
+                                        //     <a href="delCours.php?idUser=' . $row['idUser'] . '&dateDeb=' . $empr->id_adh . '&dateEmpr=' . $empr->date_emp . '"  target="_blank"><button class="btn btn-outline-danger">Annuler</button></a>
+                                        //     <a href=\"ret_emp.php?idExemp=' . $empr->id_exemp . '&idAdh=' . $empr->id_adh . '&dateEmpr=' . $empr->date_emp . '"  target="_blank"><button class="btn btn-outline-success">Rendu</button></a>
+                                        // </td>';
 
-                                ?>
+                                    }
+
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -233,9 +270,9 @@ include_once __DIR__ . '/View/header_monespace.php';
     </div>
 </section>
 </body>
+
 </html>
 
 <?php
 include_once __DIR__ . '/View/footer_index.php';
 ?>
-

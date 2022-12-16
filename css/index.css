@@ -143,14 +143,14 @@
         width: 200px;
     }
     
-    .info, .card input{
+    /* .info, .card input{
         
         padding:1px;
         margin-bottom: 4px;
         width: 300px;
         border-radius: 10px;
         color: black;
-    }
+    } */
     
     input{
         border-style: none;
